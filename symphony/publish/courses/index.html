@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" rel="stylesheet" media="screen" href="../../assets/css/symphony.css">
+<link type="text/css" rel="stylesheet" media="screen" href="../../assets/css/symphony.duplicator.css">
+<link type="text/css" rel="stylesheet" media="screen" href="../../assets/css/symphony.layout.css">
+<script type="text/javascript" src="../../assets/js/jquery.js"></script><script type="text/javascript" src="../../assets/js/jquery-ui.js"></script><script type="text/javascript" src="../../assets/js/symphony.collapsible.js"></script><script type="text/javascript" src="../../assets/js/symphony.orderable.js"></script><script type="text/javascript" src="../../assets/js/symphony.duplicator.js"></script><script type="text/javascript" src="../../assets/js/symphony.layout.js"></script><script type="text/javascript" src="../../assets/js/symphony.tags.js"></script><script type="text/javascript" src="../../assets/js/symphony.selectable.js"></script><script type="text/javascript" src="../../assets/js/symphony.js"></script><title>Symphony – Courses</title>
+</head>
+<body><form action="../../publish/courses" class="courses">
+<h1><a href="http://home/sym3/beta/">Symphony CMS</a></h1>
+<ul id="session">
+<li><a href="../../system/users/edit/1/">John Smith</a></li>
+<li><a href="../../logout/">Logout</a></li>
+</ul>
+<ul id="nav">
+<li id="nav-training" class="active">Training<ul>
+<li><a href="../../publish/categories/">Categories</a></li>
+<li><a href="../../publish/courses/">Courses</a></li>
+<li><a href="../../publish/types/">Types</a></li>
+</ul>
+</li>
+<li id="nav-employees">Employees<ul><li><a href="../../publish/registrations/">Registrations</a></li></ul>
+</li>
+<li id="nav-system">System<ul>
+<li><a href="../../system/users/">Users</a></li>
+<li><a href="../../system/settings/">Settings</a></li>
+<li><a href="../../system/extensions/">Extensions</a></li>
+<li><a href="../../extension/aac/roles/">User Roles</a></li>
+</ul>
+</li>
+<li id="nav-blueprints">Blueprints<ul>
+<li><a href="../../blueprints/views/">Views</a></li>
+<li><a href="../../blueprints/sections/">Sections</a></li>
+<li><a href="../../blueprints/datasources/">Data Sources</a></li>
+<li><a href="../../blueprints/events/">Events</a></li>
+<li><a href="../../blueprints/utilities/">Utilities</a></li>
+</ul>
+</li>
+</ul>
+<h2>Courses<a title="Create a new entry" class="create button" href="../../publish/courses/new/">Create New</a>
+</h2>
+<table>
+<thead><tr>
+<th scope="col"><a title="Sort by ascending title" href="../../publish/courses?pg=1&amp;sort=title&amp;order=asc">Title</a></th>
+<th scope="col"><a title="Sort by ascending category" href="../../publish/courses?pg=1&amp;sort=category&amp;order=asc">Category</a></th>
+<th scope="col">Tags</th>
+<th scope="col"><a title="Sort by ascending publish" href="../../publish/courses?pg=1&amp;sort=publish&amp;order=asc">Publish</a></th>
+</tr></thead>
+<tbody>
+<tr>
+<td><a id="10" class="content" href="../../publish/courses/edit/10/">A Taste of Computing</a></td>
+<td>Computer Based Courses</td>
+<td>computers</td>
+<td>Yes<input name="items[10]" type="checkbox">
+</td>
+</tr>
+<tr>
+<td><a id="11" class="content" href="../../publish/courses/edit/11/">AB Construction Safety Training Systems</a></td>
+<td>Technical and Operator Training</td>
+<td>construction, safety</td>
+<td>Yes<input name="items[11]" type="checkbox">
+</td>
+</tr>
+<tr>
+<td><a id="12" class="content" href="../../publish/courses/edit/12/">Accident Investigation</a></td>
+<td>Health and Safety Training</td>
+<td>accident, investigation</td>
+<td>Yes<input name="items[12]" type="checkbox">
+</td>
+</tr>
+<tr>
+<td><a id="13" class="content" href="../../publish/courses/edit/13/">Basic Safety Orientation Recertification</a></td>
+<td>Health and Safety Training</td>
+<td>safety, certification</td>
+<td>Yes<input name="items[13]" type="checkbox">
+</td>
+</tr>
+<tr>
+<td><a id="14" class="content" href="../../publish/courses/edit/14/">E-Business Solutions</a></td>
+<td>Online Courses</td>
+<td>e-business</td>
+<td>Yes<input name="items[14]" type="checkbox">
+</td>
+</tr>
+</tbody>
+</table>
+<div class="actions">
+<select name="with-selected"><option value="">With Selected...</option>
+<option value="delete">Delete</option>
+<optgroup label="Set ">
+<option value="toggle::category::Technical and Operator Training">Technical and Operator Training</option>
+<option value="toggle::category::Health and Safety Training">Health and Safety Training</option>
+<option value="toggle::category::Personal Development Courses">Personal Development Courses</option>
+<option value="toggle::category::Computer Based Courses">Computer Based Courses</option>
+<option value="toggle::category::Online Courses">Online Courses</option>
+</optgroup>
+<optgroup label="Set ">
+<option value="toggle::publish::yes">Yes</option>
+<option value="toggle::publish::no">No</option>
+</optgroup></select><input name="action[apply]" type="submit" value="Apply">
+</div>
+</form></body>
+</html>

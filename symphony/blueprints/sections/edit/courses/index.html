@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" rel="stylesheet" media="screen" href="../../../../assets/css/symphony.css">
+<link type="text/css" rel="stylesheet" media="screen" href="../../../../assets/css/symphony.duplicator.css">
+<link type="text/css" rel="stylesheet" media="screen" href="../../../../assets/css/symphony.layout.css">
+<script type="text/javascript" src="../../../../assets/js/jquery.js"></script><script type="text/javascript" src="../../../../assets/js/jquery-ui.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.collapsible.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.orderable.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.duplicator.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.layout.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.tags.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.selectable.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.js"></script><title>Symphony – Sections</title>
+<link type="text/css" rel="stylesheet" media="screen" href="http://home/sym3/beta/extensions/field_textbox/assets/settings.css">
+</head>
+<body><form action="../../../../blueprints/sections/edit/courses">
+<h1><a href="http://home/sym3/beta/">Symphony CMS</a></h1>
+<ul id="session">
+<li><a href="../../../../system/users/edit/1/">John Smith</a></li>
+<li><a href="../../../../logout/">Logout</a></li>
+</ul>
+<ul id="nav">
+<li id="nav-training">Training<ul>
+<li><a href="../../../../publish/categories/">Categories</a></li>
+<li><a href="../../../../publish/courses/">Courses</a></li>
+<li><a href="../../../../publish/types/">Types</a></li>
+</ul>
+</li>
+<li id="nav-employees">Employees<ul><li><a href="../../../../publish/registrations/">Registrations</a></li></ul>
+</li>
+<li id="nav-system">System<ul>
+<li><a href="../../../../system/users/">Users</a></li>
+<li><a href="../../../../system/settings/">Settings</a></li>
+<li><a href="../../../../system/extensions/">Extensions</a></li>
+<li><a href="../../../../extension/aac/roles/">User Roles</a></li>
+</ul>
+</li>
+<li id="nav-blueprints" class="active">Blueprints<ul>
+<li><a href="../../../../blueprints/views/">Views</a></li>
+<li><a href="../../../../blueprints/sections/">Sections</a></li>
+<li><a href="../../../../blueprints/datasources/">Data Sources</a></li>
+<li><a href="../../../../blueprints/events/">Events</a></li>
+<li><a href="../../../../blueprints/utilities/">Utilities</a></li>
+</ul>
+</li>
+</ul>
+<h2>Courses</h2>
+<div id="tab"><ul>
+<li><a class="active" href="../../../../blueprints/sections/edit/courses/">Configuration</a></li>
+<li><a class="" href="../../../../blueprints/sections/layout/courses/">Layout</a></li>
+</ul></div>
+<div class="columns type-sl" id="layout">
+<div class="column small"><fieldset class="settings">
+<h3>Essentials</h3>
+<label>Name<input name="essentials[name]" type="text" value="Courses"></label><label>Navigation Group<em>Created if does not exist</em><input name="essentials[navigation-group]" type="text" value="Training"></label><ul class="tags singular">
+<li>Training</li>
+<li>Employees</li>
+</ul>
+<label><input name="essentials[hidden-from-publish-menu]" type="checkbox" value="yes">Hide this section from the Publish menu</label>
+</fieldset></div>
+<div class="column large"><fieldset class="settings">
+<h3>Fields</h3>
+<div class="duplicator-widget orderable-widget" id="section-duplicator">
+<ol class="controls"><li class="add">Add Field</li></ol>
+<ol class="templates">
+<li class="template">
+<span class="name">Checkbox</span><div class="group">
+<label class="field-name">Name<input name="name" type="text"></label><label>Publish Label<em>Optional</em><input name="publish-label" type="text"></label>
+</div>
+<input name="type" type="hidden" value="checkbox"><ul class="options-list">
+<li>
+<input name="show-column" type="hidden" value="no"><label class="meta"><input name="show-column" type="checkbox" value="yes" checked>Show column</label>
+</li>
+<li>
+<input name="required" type="hidden" value="no"><label><input name="required" type="checkbox" value="yes">Make this a required field</label>
+</li>
+<li><label><input name="default-state" type="checkbox" value="on">Checked by default</label></li>
+</ul>
+</li>
+<li class="template">
+<span class="name">Date</span><div class="group">
+<label class="field-name">Name<input name="name" type="text"></label><label>Publish Label<em>Optional</em><input name="publish-label" type="text"></label>
+</div>
+<input name="type" type="hidden" value="date"><ul class="options-list">
+<li>
+<input name="show-column" type="hidden" value="no"><label class="meta"><input name="show-column" type="checkbox" value="yes" checked>Show column</label>
+</li>
+<li>
+<input name="required" type="hidden" value="no"><label><input name="required" type="checkbox" value="yes">Make this a required field</label>
+</li>
+<li><label><input name="pre-populate" type="checkbox" value="yes" checked>Pre-populate this field with today's date</label></li>
+</ul>
+</li>
+<li class="template">
+<span class="name">Link</span><div class="group">
+<label class="field-name">Name<input name="name" type="text"></label><label>Publish Label<em>Optional</em><input name="publish-label" type="text"></label>
+</div>
+<input name="type" type="hidden" value="link"><label>Options<select multiple name="related-fields]["><optgroup label="Categories">
+<option value="categories::category">categories::category</option>
+<option value="categories::description">categories::description</option>
+<option value="categories::type">categories::type</option>
+</optgroup>
+<optgroup label="Registrations">
+<option value="registrations::first-name">registrations::first-name</option>
+<option value="registrations::last-name">registrations::last-name</option>
+<option value="registrations::member-number">registrations::member-number</option>
+<option value="registrations::role">registrations::role</option>
+</optgroup>
+<optgroup label="Types">
+<option value="types::description">types::description</option>
+<option value="types::type">types::type</option>
+</optgroup></select></label><label>Limit to the <input name="limit" type="text" value="20" size="3"> most recent entries</label><ul class="options-list">
+<li>
+<input name="show-column" type="hidden" value="no"><label class="meta"><input name="show-column" type="checkbox" value="yes" checked>Show column</label>
+</li>
+<li>
+<input name="required" type="hidden" value="no"><label><input name="required" type="checkbox" value="yes">Make this a required field</label>
+</li>
+<label><input name="allow-multiple-selection" type="checkbox" value="yes">Allow selection of multiple options</label>
+</ul>
+</li>
+<li class="template">
+<span class="name">Select Box</span><div class="group">
+<label class="field-name">Name<input name="name" type="text"></label><label>Publish Label<em>Optional</em><input name="publish-label" type="text"></label>
+</div>
+<input name="type" type="hidden" value="select"><label>Static Options<em>Optional</em><input name="static-options" type="text"></label><label>Dynamic Options<select name="dynamic-options"><option value="">None</option>
+<optgroup label="Categories">
+<option value="categories::category">categories::category</option>
+<option value="categories::description">categories::description</option>
+<option value="categories::type">categories::type</option>
+</optgroup>
+<optgroup label="Registrations">
+<option value="registrations::first-name">registrations::first-name</option>
+<option value="registrations::last-name">registrations::last-name</option>
+<option value="registrations::member-number">registrations::member-number</option>
+<option value="registrations::role">registrations::role</option>
+</optgroup>
+<optgroup label="Types">
+<option value="types::description">types::description</option>
+<option value="types::type">types::type</option>
+</optgroup></select></label><ul class="options-list">
+<li>
+<input name="show-column" type="hidden" value="no"><label class="meta"><input name="show-column" type="checkbox" value="yes" checked>Show column</label>
+</li>
+<li>
+<input name="required" type="hidden" value="no"><label><input name="required" type="checkbox" value="yes">Make this a required field</label>
+</li>
+<label><input name="allow-multiple-selection" type="checkbox" value="yes">Allow selection of multiple options</label>
+</ul>
+</li>
+<li class="template">
+<span class="name">Tag List</span><div class="group">
+<label class="field-name">Name<input name="name" type="text"></label><label>Publish Label<em>Optional</em><input name="publish-label" type="text"></label>
+</div>
+<input name="type" type="hidden" value="taglist"><label>Suggestion List<select multiple name="suggestion-list-source]["><option value="existing">Existing Values</option>
+<optgroup label="Categories">
+<option value="categories::category">categories::category</option>
+<option value="categories::description">categories::description</option>
+<option value="categories::type">categories::type</option>
+</optgroup>
+<optgroup label="Registrations">
+<option value="registrations::first-name">registrations::first-name</option>
+<option value="registrations::last-name">registrations::last-name</option>
+<option value="registrations::member-number">registrations::member-number</option>
+<option value="registrations::role">registrations::role</option>
+</optgroup>
+<optgroup label="Types">
+<option value="types::description">types::description</option>
+<option value="types::type">types::type</option>
+</optgroup></select></label><div class="group">
+<label>Minimum Tag Suggestion Threshold<input name="suggestion-source-threshold" type="text" value="2"></label><label>Tag Delimiter<input name="delimiter" type="text" value=","></label>
+</div>
+<label>Validation Rule<em>Optional</em><input name="validator" type="text"></label><ul class="tags singular">
+<li class="/^-?(?:\d+(?:\.\d+)?|\.\d+)$/i">number</li>
+<li class="/^\w(?:\.?[\w%+-]+)*@\w(?:[\w-]*\.)+?[a-z]{2,}$/i">email</li>
+<li class="/^[^\s:\/?#]+:(?:\/{2,3})?[^\s.\/?#]+(?:\.[^\s.\/?#]+)*(?:\/[^\s?#]*\??[^\s?#]*(#[^\s#]*)?)?$/">URI</li>
+</ul>
+<ul class="options-list">
+<li>
+<input name="show-column" type="hidden" value="no"><label class="meta"><input name="show-column" type="checkbox" value="yes" checked>Show column</label>
+</li>
+<li>
+<input name="required" type="hidden" value="no"><label><input name="required" type="checkbox" value="yes">Make this a required field</label>
+</li>
+</ul>
+</li>
+<li class="template field-textbox">
+<span class="name">Text Box</span><div class="group">
+<label class="field-name">Name<input name="name" type="text"></label><label>Publish Label<em>Optional</em><input name="publish-label" type="text"></label>
+</div>
+<input name="type" type="hidden" value="textbox"><div class="group">
+<label>Size<select name="text-size"><option value="single">Single Line</option>
+<option value="small">Small Box</option>
+<option value="medium" selected>Medium Box</option>
+<option value="large">Large Box</option>
+<option value="huge">Huge Box</option></select></label><label>Text Formatter<select name="text-formatter"><option value="">None</option>
+<option value="markdown">Markdown</option>
+<option value="markdown_extra">Markdown Extra</option>
+<option value="markdown_extra_with_smartypants">Markdown Extra (With SmartyPants)</option>
+<option value="markdown_with_purifier">Markdown (With HTML Purifier)</option></select></label>
+</div>
+<label>Validation Rule<em>Optional</em><input name="text-validator" type="text"></label><ul class="tags singular">
+<li class="/^-?(?:\d+(?:\.\d+)?|\.\d+)$/i">number</li>
+<li class="/^\w(?:\.?[\w%+-]+)*@\w(?:[\w-]*\.)+?[a-z]{2,}$/i">email</li>
+<li class="/^[^\s:\/?#]+:(?:\/{2,3})?[^\s.\/?#]+(?:\.[^\s.\/?#]+)*(?:\/[^\s?#]*\??[^\s?#]*(#[^\s#]*)?)?$/">URI</li>
+</ul>
+<div class="group">
+<label>Limit<em>Number of characters</em><input name="text-length" type="text" value="none"></label><label>Preview<em>Number of characters</em><input name="column-length" type="text" value="75"></label>
+</div>
+<ul class="options-list">
+<li>
+<input name="show-column" type="hidden" value="no"><label class="meta"><input name="show-column" type="checkbox" value="yes" checked>Show column</label>
+</li>
+<li>
+<input name="required" type="hidden" value="no"><label><input name="required" type="checkbox" value="yes">Make this a required field</label>
+</li>
+<li><label><input name="text-handle" type="checkbox" value="yes" checked>Output with handles</label></li>
+<li><label><input name="text-cdata" type="checkbox" value="yes">Output as CDATA</label></li>
+</ul>
+</li>
+<li class="template">
+<span class="name">Upload</span><div class="group">
+<label class="field-name">Name<input name="name" type="text"></label><label>Publish Label<em>Optional</em><input name="publish-label" type="text"></label>
+</div>
+<input name="type" type="hidden" value="upload"><label>Destination Directory<select name="destination"><option value="/workspace">/workspace</option>
+<option value="/workspace/sections">/workspace/sections</option>
+<option value="/workspace/views">/workspace/views</option>
+<option value="/workspace/views/home">/workspace/views/home</option></select></label><label>Validation Rule<em>Optional</em><input name="validator" type="text"></label><ul class="tags singular">
+<li class="/\.(?:bmp|gif|jpe?g|png)$/i">image</li>
+<li class="/\.(?:doc|pdf|rtf|txt)$/i">document</li>
+</ul>
+<ul class="options-list">
+<li>
+<input name="show-column" type="hidden" value="no"><label class="meta"><input name="show-column" type="checkbox" value="yes" checked>Show column</label>
+</li>
+<li>
+<input name="required" type="hidden" value="no"><label><input name="required" type="checkbox" value="yes">Make this a required field</label>
+</li>
+<label><input name="serialise" type="checkbox" value="yes">Serialise file names</label>
+</ul>
+</li>
+<li class="template">
+<span class="name">User</span><div class="group">
+<label class="field-name">Name<input name="name" type="text"></label><label>Publish Label<em>Optional</em><input name="publish-label" type="text"></label>
+</div>
+<input name="type" type="hidden" value="user"><ul class="options-list">
+<li>
+<input name="show-column" type="hidden" value="no"><label class="meta"><input name="show-column" type="checkbox" value="yes" checked>Show column</label>
+</li>
+<li>
+<input name="required" type="hidden" value="no"><label><input name="required" type="checkbox" value="yes">Make this a required field</label>
+</li>
+<li><label><input name="allow-multiple-selection" type="checkbox" value="yes">Allow selection of multiple users</label></li>
+<li><label><input name="default-to-current-user" type="checkbox" value="yes">Select current user by default</label></li>
+</ul>
+</li>
+</ol>
+<div class="content">
+<ol class="tabs">
+<li class="tab orderable-item orderable-handle active">
+<span class="name">Title<em>Text Box</em></span><a class="remove">×</a>
+</li>
+<li class="tab orderable-item orderable-handle">
+<span class="name">Category<em>Select Box</em></span><a class="remove">×</a>
+</li>
+<li class="tab orderable-item orderable-handle">
+<span class="name">Description<em>Text Box</em></span><a class="remove">×</a>
+</li>
+<li class="tab orderable-item orderable-handle">
+<span class="name">Body<em>Text Box</em></span><a class="remove">×</a>
+</li>
+<li class="tab orderable-item orderable-handle">
+<span class="name">Tags<em>Tag List</em></span><a class="remove">×</a>
+</li>
+<li class="tab orderable-item orderable-handle">
+<span class="name">Publish<em>Checkbox</em></span><a class="remove">×</a>
+</li>
+</ol>
+<ol class="instances">
+<li class="instance active field-textbox">
+<div class="group">
+<label class="field-name">Name<input name="name" type="text" value="Title"></label><label>Publish Label<em>Optional</em><input name="publish-label" type="text"></label>
+</div>
+<input name="guid" type="hidden" value="4cf80eacecc28"><input name="type" type="hidden" value="textbox"><div class="group">
+<label>Size<select name="text-size"><option value="single" selected>Single Line</option>
+<option value="small">Small Box</option>
+<option value="medium">Medium Box</option>
+<option value="large">Large Box</option>
+<option value="huge">Huge Box</option></select></label><label>Text Formatter<select name="text-formatter"><option value="">None</option>
+<option value="markdown">Markdown</option>
+<option value="markdown_extra">Markdown Extra</option>
+<option value="markdown_extra_with_smartypants">Markdown Extra (With SmartyPants)</option>
+<option value="markdown_with_purifier">Markdown (With HTML Purifier)</option></select></label>
+</div>
+<label>Validation Rule<em>Optional</em><input name="text-validator" type="text"></label><ul class="tags singular">
+<li class="/^-?(?:\d+(?:\.\d+)?|\.\d+)$/i">number</li>
+<li class="/^\w(?:\.?[\w%+-]+)*@\w(?:[\w-]*\.)+?[a-z]{2,}$/i">email</li>
+<li class="/^[^\s:\/?#]+:(?:\/{2,3})?[^\s.\/?#]+(?:\.[^\s.\/?#]+)*(?:\/[^\s?#]*\??[^\s?#]*(#[^\s#]*)?)?$/">URI</li>
+</ul>
+<div class="group">
+<label>Limit<em>Number of characters</em><input name="text-length" type="text" value="none"></label><label>Preview<em>Number of characters</em><input name="column-length" type="text" value="75"></label>
+</div>
+<ul class="options-list">
+<li>
+<input name="show-column" type="hidden" value="no"><label class="meta"><input name="show-column" type="checkbox" value="yes" checked>Show column</label>
+</li>
+<li>
+<input name="required" type="hidden" value="no"><label><input name="required" type="checkbox" value="yes">Make this a required field</label>
+</li>
+<li><label><input name="text-handle" type="checkbox" value="yes" checked>Output with handles</label></li>
+<li><label><input name="text-cdata" type="checkbox" value="yes">Output as CDATA</label></li>
+</ul>
+</li>
+<li class="instance">
+<div class="group">
+<label class="field-name">Name<input name="name" type="text" value="Category"></label><label>Publish Label<em>Optional</em><input name="publish-label" type="text"></label>
+</div>
+<input name="guid" type="hidden" value="4cf80eacece44"><input name="type" type="hidden" value="select"><label>Static Options<em>Optional</em><input name="static-options" type="text"></label><label>Dynamic Options<select name="dynamic-options"><option value="">None</option>
+<optgroup label="Categories">
+<option value="categories::category">categories::category</option>
+<option value="categories::description">categories::description</option>
+<option value="categories::type">categories::type</option>
+</optgroup>
+<optgroup label="Registrations">
+<option value="registrations::first-name">registrations::first-name</option>
+<option value="registrations::last-name">registrations::last-name</option>
+<option value="registrations::member-number">registrations::member-number</option>
+<option value="registrations::role">registrations::role</option>
+</optgroup>
+<optgroup label="Types">
+<option value="types::description">types::description</option>
+<option value="types::type">types::type</option>
+</optgroup></select></label><ul class="options-list">
+<li>
+<input name="show-column" type="hidden" value="no"><label class="meta"><input name="show-column" type="checkbox" value="yes" checked>Show column</label>
+</li>
+<li>
+<input name="required" type="hidden" value="no"><label><input name="required" type="checkbox" value="yes">Make this a required field</label>
+</li>
+<label><input name="allow-multiple-selection" type="checkbox" value="yes">Allow selection of multiple options</label>
+</ul>
+</li>
+<li class="instance field-textbox">
+<div class="group">
+<label class="field-name">Name<input name="name" type="text" value="Description"></label><label>Publish Label<em>Optional</em><input name="publish-label" type="text"></label>
+</div>
+<input name="guid" type="hidden" value="4cf80eacecfb8"><input name="type" type="hidden" value="textbox"><div class="group">
+<label>Size<select name="text-size"><option value="single">Single Line</option>
+<option value="small">Small Box</option>
+<option value="medium" selected>Medium Box</option>
+<option value="large">Large Box</option>
+<option value="huge">Huge Box</option></select></label><label>Text Formatter<select name="text-formatter"><option value="">None</option>
+<option value="markdown">Markdown</option>
+<option value="markdown_extra" selected>Markdown Extra</option>
+<option value="markdown_extra_with_smartypants">Markdown Extra (With SmartyPants)</option>
+<option value="markdown_with_purifier">Markdown (With HTML Purifier)</option></select></label>
+</div>
+<label>Validation Rule<em>Optional</em><input name="text-validator" type="text"></label><ul class="tags singular">
+<li class="/^-?(?:\d+(?:\.\d+)?|\.\d+)$/i">number</li>
+<li class="/^\w(?:\.?[\w%+-]+)*@\w(?:[\w-]*\.)+?[a-z]{2,}$/i">email</li>
+<li class="/^[^\s:\/?#]+:(?:\/{2,3})?[^\s.\/?#]+(?:\.[^\s.\/?#]+)*(?:\/[^\s?#]*\??[^\s?#]*(#[^\s#]*)?)?$/">URI</li>
+</ul>
+<div class="group">
+<label>Limit<em>Number of characters</em><input name="text-length" type="text" value="none"></label><label>Preview<em>Number of characters</em><input name="column-length" type="text" value="75"></label>
+</div>
+<ul class="options-list">
+<li>
+<input name="show-column" type="hidden" value="no"><label class="meta"><input name="show-column" type="checkbox" value="yes">Show column</label>
+</li>
+<li>
+<input name="required" type="hidden" value="no"><label><input name="required" type="checkbox" value="yes">Make this a required field</label>
+</li>
+<li><label><input name="text-handle" type="checkbox" value="yes" checked>Output with handles</label></li>
+<li><label><input name="text-cdata" type="checkbox" value="yes">Output as CDATA</label></li>
+</ul>
+</li>
+<li class="instance field-textbox">
+<div class="group">
+<label class="field-name">Name<input name="name" type="text" value="Body"></label><label>Publish Label<em>Optional</em><input name="publish-label" type="text"></label>
+</div>
+<input name="guid" type="hidden" value="4cf80eaced1bf"><input name="type" type="hidden" value="textbox"><div class="group">
+<label>Size<select name="text-size"><option value="single">Single Line</option>
+<option value="small">Small Box</option>
+<option value="medium">Medium Box</option>
+<option value="large" selected>Large Box</option>
+<option value="huge">Huge Box</option></select></label><label>Text Formatter<select name="text-formatter"><option value="">None</option>
+<option value="markdown">Markdown</option>
+<option value="markdown_extra" selected>Markdown Extra</option>
+<option value="markdown_extra_with_smartypants">Markdown Extra (With SmartyPants)</option>
+<option value="markdown_with_purifier">Markdown (With HTML Purifier)</option></select></label>
+</div>
+<label>Validation Rule<em>Optional</em><input name="text-validator" type="text"></label><ul class="tags singular">
+<li class="/^-?(?:\d+(?:\.\d+)?|\.\d+)$/i">number</li>
+<li class="/^\w(?:\.?[\w%+-]+)*@\w(?:[\w-]*\.)+?[a-z]{2,}$/i">email</li>
+<li class="/^[^\s:\/?#]+:(?:\/{2,3})?[^\s.\/?#]+(?:\.[^\s.\/?#]+)*(?:\/[^\s?#]*\??[^\s?#]*(#[^\s#]*)?)?$/">URI</li>
+</ul>
+<div class="group">
+<label>Limit<em>Number of characters</em><input name="text-length" type="text" value="none"></label><label>Preview<em>Number of characters</em><input name="column-length" type="text" value="75"></label>
+</div>
+<ul class="options-list">
+<li>
+<input name="show-column" type="hidden" value="no"><label class="meta"><input name="show-column" type="checkbox" value="yes">Show column</label>
+</li>
+<li>
+<input name="required" type="hidden" value="no"><label><input name="required" type="checkbox" value="yes">Make this a required field</label>
+</li>
+<li><label><input name="text-handle" type="checkbox" value="yes" checked>Output with handles</label></li>
+<li><label><input name="text-cdata" type="checkbox" value="yes">Output as CDATA</label></li>
+</ul>
+</li>
+<li class="instance">
+<div class="group">
+<label class="field-name">Name<input name="name" type="text" value="Tags"></label><label>Publish Label<em>Optional</em><input name="publish-label" type="text"></label>
+</div>
+<input name="guid" type="hidden" value="4cf80eaced3d9"><input name="type" type="hidden" value="taglist"><label>Suggestion List<select multiple name="suggestion-list-source]["><option value="existing" selected>Existing Values</option>
+<optgroup label="Categories">
+<option value="categories::category">categories::category</option>
+<option value="categories::description">categories::description</option>
+<option value="categories::type">categories::type</option>
+</optgroup>
+<optgroup label="Registrations">
+<option value="registrations::first-name">registrations::first-name</option>
+<option value="registrations::last-name">registrations::last-name</option>
+<option value="registrations::member-number">registrations::member-number</option>
+<option value="registrations::role">registrations::role</option>
+</optgroup>
+<optgroup label="Types">
+<option value="types::description">types::description</option>
+<option value="types::type">types::type</option>
+</optgroup></select></label><div class="group">
+<label>Minimum Tag Suggestion Threshold<input name="suggestion-source-threshold" type="text" value="2"></label><label>Tag Delimiter<input name="delimiter" type="text" value=","></label>
+</div>
+<label>Validation Rule<em>Optional</em><input name="validator" type="text"></label><ul class="tags singular">
+<li class="/^-?(?:\d+(?:\.\d+)?|\.\d+)$/i">number</li>
+<li class="/^\w(?:\.?[\w%+-]+)*@\w(?:[\w-]*\.)+?[a-z]{2,}$/i">email</li>
+<li class="/^[^\s:\/?#]+:(?:\/{2,3})?[^\s.\/?#]+(?:\.[^\s.\/?#]+)*(?:\/[^\s?#]*\??[^\s?#]*(#[^\s#]*)?)?$/">URI</li>
+</ul>
+<ul class="options-list">
+<li>
+<input name="show-column" type="hidden" value="no"><label class="meta"><input name="show-column" type="checkbox" value="yes" checked>Show column</label>
+</li>
+<li>
+<input name="required" type="hidden" value="no"><label><input name="required" type="checkbox" value="yes">Make this a required field</label>
+</li>
+</ul>
+</li>
+<li class="instance">
+<div class="group">
+<label class="field-name">Name<input name="name" type="text" value="Publish"></label><label>Publish Label<em>Optional</em><input name="publish-label" type="text"></label>
+</div>
+<input name="guid" type="hidden" value="4cf80eaced5a8"><input name="type" type="hidden" value="checkbox"><ul class="options-list">
+<li>
+<input name="show-column" type="hidden" value="no"><label class="meta"><input name="show-column" type="checkbox" value="yes" checked>Show column</label>
+</li>
+<li>
+<input name="required" type="hidden" value="no"><label><input name="required" type="checkbox" value="yes">Make this a required field</label>
+</li>
+<li><label><input name="default-state" type="checkbox" value="on">Checked by default</label></li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
+</fieldset></div>
+</div>
+<div class="actions">
+<button accesskey="s" name="action[save]" type="submit"><span>Save Changes</span></button><button class="confirm delete" title="Delete this section" name="action[delete]" type="submit"><span>Delete</span></button>
+</div>
+</form></body>
+</html>

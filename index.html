@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" rel="stylesheet" media="screen" href="symphony/assets/css/peripheral.css">
+<title>Symphony – Login</title>
+</head>
+<body onload="document.forms[0].elements.username.focus()"><form action="./symphony/blueprints/sections/" method="POST" class="panel">
+<h1>Symphony</h1>
+<fieldset>
+<label>Username<input name="username" type="text"></label><label>Password<input name="password" type="password"></label><p><a href="symphony/login/retrieve-password/">Forgot your password?</a></p>
+</fieldset>
+<div class="actions">
+<input name="action[login]" type="submit" value="Login"><input name="redirect" type="hidden" value=".">
+</div>
+</form></body>
+</html>

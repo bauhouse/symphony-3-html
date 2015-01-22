@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" rel="stylesheet" media="screen" href="../../../../../assets/css/symphony.css">
+<link type="text/css" rel="stylesheet" media="screen" href="../../../../../assets/css/symphony.duplicator.css">
+<link type="text/css" rel="stylesheet" media="screen" href="../../../../../assets/css/symphony.layout.css">
+<script type="text/javascript" src="../../../../../assets/js/jquery.js"></script><script type="text/javascript" src="../../../../../assets/js/jquery-ui.js"></script><script type="text/javascript" src="../../../../../assets/js/symphony.collapsible.js"></script><script type="text/javascript" src="../../../../../assets/js/symphony.orderable.js"></script><script type="text/javascript" src="../../../../../assets/js/symphony.duplicator.js"></script><script type="text/javascript" src="../../../../../assets/js/symphony.layout.js"></script><script type="text/javascript" src="../../../../../assets/js/symphony.tags.js"></script><script type="text/javascript" src="../../../../../assets/js/symphony.js"></script><link type="text/css" rel="stylesheet" media="screen" href="http://home/sym3/beta/extensions/aac/assets/roles.css">
+<script type="text/javascript" src="http://home/sym3/beta/extensions/aac/assets/roles.js"></script><title>Symphony – Roles – Author</title>
+</head>
+<body><form action="../../../../../extension/aac/roles/edit/1">
+<h1><a href="http://home/sym3/beta/">Symphony CMS</a></h1>
+<ul id="session">
+<li><a href="../../../../../system/users/edit/1/">John Smith</a></li>
+<li><a href="../../../../../logout/">Logout</a></li>
+</ul>
+<ul id="nav">
+<li id="nav-training">Training<ul>
+<li><a href="../../../../../publish/categories/">Categories</a></li>
+<li><a href="../../../../../publish/courses/">Courses</a></li>
+<li><a href="../../../../../publish/types/">Types</a></li>
+</ul>
+</li>
+<li id="nav-employees">Employees<ul><li><a href="../../../../../publish/registrations/">Registrations</a></li></ul>
+</li>
+<li id="nav-system" class="active">System<ul>
+<li><a href="../../../../../system/users/">Users</a></li>
+<li><a href="../../../../../system/settings/">Settings</a></li>
+<li><a href="../../../../../system/extensions/">Extensions</a></li>
+<li><a href="../../../../../extension/aac/roles/">User Roles</a></li>
+</ul>
+</li>
+<li id="nav-blueprints">Blueprints<ul>
+<li><a href="../../../../../blueprints/views/">Views</a></li>
+<li><a href="../../../../../blueprints/sections/">Sections</a></li>
+<li><a href="../../../../../blueprints/datasources/">Data Sources</a></li>
+<li><a href="../../../../../blueprints/events/">Events</a></li>
+<li><a href="../../../../../blueprints/utilities/">Utilities</a></li>
+</ul>
+</li>
+</ul>
+<h2>Author</h2>
+<div class="columns type-sll" id="layout">
+<div class="column small"><fieldset>
+<h3>Essentials</h3>
+<label>Name<input name="fields[name]" type="text" value="Author"></label><label>Description<textarea rows="7" cols="50" name="fields[description]"></textarea></label>
+</fieldset></div>
+<div class="column large">
+<fieldset>
+<h3>Blueprints Permissions</h3>
+<table id="role-permissions">
+<thead><tr>
+<th scope="col">Area</th>
+<th class="checkbox" scope="col">Create</th>
+<th class="checkbox" scope="col">Edit</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Sections</td>
+<td><input name="fields[permissions][blueprints::sections][create]" type="checkbox" value="1"></td>
+<td><input name="fields[permissions][blueprints::sections][edit]" type="checkbox" value="1"></td>
+</tr>
+<tr>
+<td>Data Sources</td>
+<td><input name="fields[permissions][blueprints::datasources][create]" type="checkbox" value="1"></td>
+<td><input name="fields[permissions][blueprints::datasources][edit]" type="checkbox" value="1"></td>
+</tr>
+<tr>
+<td>Events</td>
+<td><input name="fields[permissions][blueprints::events][create]" type="checkbox" value="1"></td>
+<td><input name="fields[permissions][blueprints::events][edit]" type="checkbox" value="1"></td>
+</tr>
+<tr>
+<td>Views</td>
+<td><input name="fields[permissions][blueprints::views][create]" type="checkbox" value="1"></td>
+<td><input name="fields[permissions][blueprints::views][edit]" type="checkbox" value="1"></td>
+</tr>
+<tr>
+<td>Utilities</td>
+<td><input name="fields[permissions][blueprints::utilities][create]" type="checkbox" value="1"></td>
+<td><input name="fields[permissions][blueprints::utilities][edit]" type="checkbox" value="1"></td>
+</tr>
+</tbody>
+</table>
+</fieldset>
+<fieldset>
+<h3>System Permissions</h3>
+<table id="role-permissions"><tbody>
+<tr>
+<td>Access Settings</td>
+<td><input name="fields[permissions][system::settings][access]" type="checkbox" value="1"></td>
+</tr>
+<tr>
+<td>Access Extensions</td>
+<td><input name="fields[permissions][system::extensions][access]" type="checkbox" value="1"></td>
+</tr>
+<tr>
+<td>Create New Users</td>
+<td><input name="fields[permissions][system::users][create]" type="checkbox" value="1"></td>
+</tr>
+<tr>
+<td>Edit User Profiles</td>
+<td><select name="fields[permissions][system::users][edit]"><option value="0">None</option>
+<option value="1">Own</option>
+<option value="2">All</option></select></td>
+</tr>
+<tr>
+<td>Change Users Role</td>
+<td><input name="fields[permissions][system::users][change-role]" type="checkbox" value="1"></td>
+</tr>
+</tbody></table>
+</fieldset>
+</div>
+<div class="column large"><fieldset>
+<h3>Publishing Permissions</h3>
+<table id="role-permissions">
+<thead><tr>
+<th scope="col">Section</th>
+<th class="checkbox" scope="col">Create</th>
+<th class="checkbox" scope="col">Edit</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Categories</td>
+<td>
+<input checked style="display: none;" name="fields[permissions][publish::categories][create]" type="checkbox" value="0"><input checked name="fields[permissions][publish::categories][create]" type="checkbox" value="1">
+</td>
+<td><select name="fields[permissions][publish::categories][edit]"><option value="0">None</option>
+<option value="1">Own</option>
+<option value="2" selected>All</option></select></td>
+</tr>
+<tr>
+<td>Courses</td>
+<td>
+<input checked style="display: none;" name="fields[permissions][publish::courses][create]" type="checkbox" value="0"><input checked name="fields[permissions][publish::courses][create]" type="checkbox" value="1">
+</td>
+<td><select name="fields[permissions][publish::courses][edit]"><option value="0">None</option>
+<option value="1">Own</option>
+<option value="2" selected>All</option></select></td>
+</tr>
+<tr>
+<td>Registrations</td>
+<td>
+<input checked style="display: none;" name="fields[permissions][publish::registrations][create]" type="checkbox" value="0"><input checked name="fields[permissions][publish::registrations][create]" type="checkbox" value="1">
+</td>
+<td><select name="fields[permissions][publish::registrations][edit]"><option value="0">None</option>
+<option value="1">Own</option>
+<option value="2" selected>All</option></select></td>
+</tr>
+<tr>
+<td>Types</td>
+<td>
+<input checked style="display: none;" name="fields[permissions][publish::types][create]" type="checkbox" value="0"><input checked name="fields[permissions][publish::types][create]" type="checkbox" value="1">
+</td>
+<td><select name="fields[permissions][publish::types][edit]"><option value="0">None</option>
+<option value="1">Own</option>
+<option value="2" selected>All</option></select></td>
+</tr>
+</tbody>
+</table>
+</fieldset></div>
+</div>
+<div class="actions">
+<button accesskey="s" name="action[save]" type="submit"><span>Save Changes</span></button><button class="confirm delete" title="Delete this role" name="action[delete]" type="submit"><span>Delete</span></button>
+</div>
+</form></body>
+</html>

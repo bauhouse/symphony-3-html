@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" rel="stylesheet" media="screen" href="../../assets/css/symphony.css">
+<link type="text/css" rel="stylesheet" media="screen" href="../../assets/css/symphony.duplicator.css">
+<link type="text/css" rel="stylesheet" media="screen" href="../../assets/css/symphony.layout.css">
+<script type="text/javascript" src="../../assets/js/jquery.js"></script><script type="text/javascript" src="../../assets/js/jquery-ui.js"></script><script type="text/javascript" src="../../assets/js/symphony.collapsible.js"></script><script type="text/javascript" src="../../assets/js/symphony.orderable.js"></script><script type="text/javascript" src="../../assets/js/symphony.duplicator.js"></script><script type="text/javascript" src="../../assets/js/symphony.layout.js"></script><script type="text/javascript" src="../../assets/js/symphony.tags.js"></script><script type="text/javascript" src="../../assets/js/symphony.selectable.js"></script><script type="text/javascript" src="../../assets/js/symphony.js"></script><title>Symphony – Events</title>
+</head>
+<body><form action="../../blueprints/events">
+<h1><a href="http://home/sym3/beta/">Symphony CMS</a></h1>
+<ul id="session">
+<li><a href="../../system/users/edit/1/">John Smith</a></li>
+<li><a href="../../logout/">Logout</a></li>
+</ul>
+<ul id="nav">
+<li id="nav-training">Training<ul>
+<li><a href="../../publish/categories/">Categories</a></li>
+<li><a href="../../publish/courses/">Courses</a></li>
+<li><a href="../../publish/types/">Types</a></li>
+</ul>
+</li>
+<li id="nav-employees">Employees<ul><li><a href="../../publish/registrations/">Registrations</a></li></ul>
+</li>
+<li id="nav-system">System<ul>
+<li><a href="../../system/users/">Users</a></li>
+<li><a href="../../system/settings/">Settings</a></li>
+<li><a href="../../system/extensions/">Extensions</a></li>
+<li><a href="../../extension/aac/roles/">User Roles</a></li>
+</ul>
+</li>
+<li id="nav-blueprints" class="active">Blueprints<ul>
+<li><a href="../../blueprints/views/">Views</a></li>
+<li><a href="../../blueprints/sections/">Sections</a></li>
+<li><a href="../../blueprints/datasources/">Data Sources</a></li>
+<li><a href="../../blueprints/events/">Events</a></li>
+<li><a href="../../blueprints/utilities/">Utilities</a></li>
+</ul>
+</li>
+</ul>
+<h2>Events<a title="Create a new event" class="create button" href="../../blueprints/events/new/">Create New</a>
+</h2>
+<table id="events-list">
+<thead><tr>
+<th scope="col">Name</th>
+<th scope="col">Destination</th>
+<th scope="col">Type</th>
+<th scope="col">Used By</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>
+<a title="/Users/stephen/Sites/sym3/beta/workspace/events/save-category.php" href="../../blueprints/events/edit/save-category/">Save Category</a><input name="items[save-category]" type="checkbox">
+</td>
+<td><a title="categories" href="../../blueprints/sections/edit/categories/">Categories</a></td>
+<td>Sections</td>
+<td class="inactive">None</td>
+</tr>
+<tr>
+<td>
+<a title="/Users/stephen/Sites/sym3/beta/workspace/events/save-course.php" href="../../blueprints/events/edit/save-course/">Save Course</a><input name="items[save-courses]" type="checkbox">
+</td>
+<td><a title="courses" href="../../blueprints/sections/edit/courses/">Courses</a></td>
+<td>Sections</td>
+<td class="inactive">None</td>
+</tr>
+<tr>
+<td>
+<a title="/Users/stephen/Sites/sym3/beta/workspace/events/save-registration.php" href="../../blueprints/events/edit/save-registration/">Save Registration</a><input name="items[save-registration]" type="checkbox">
+</td>
+<td><a title="registrations" href="../../blueprints/sections/edit/registrations/">Registrations</a></td>
+<td>Sections</td>
+<td class="inactive">None</td>
+</tr>
+<tr>
+<td>
+<a title="/Users/stephen/Sites/sym3/beta/workspace/events/save-type.php" href="../../blueprints/events/edit/save-type/">Save Type</a><input name="items[save-type]" type="checkbox">
+</td>
+<td><a title="types" href="../../blueprints/sections/edit/types/">Types</a></td>
+<td>Sections</td>
+<td class="inactive">None</td>
+</tr>
+</tbody>
+</table>
+<div class="actions">
+<select name="with-selected"><option value="">With Selected...</option>
+<option value="delete">Delete</option></select><input name="action[apply]" type="submit" value="Apply">
+</div>
+</form></body>
+</html>

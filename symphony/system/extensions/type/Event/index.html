@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" rel="stylesheet" media="screen" href="../../../../assets/css/symphony.css">
+<link type="text/css" rel="stylesheet" media="screen" href="../../../../assets/css/symphony.duplicator.css">
+<link type="text/css" rel="stylesheet" media="screen" href="../../../../assets/css/symphony.layout.css">
+<script type="text/javascript" src="../../../../assets/js/jquery.js"></script><script type="text/javascript" src="../../../../assets/js/jquery-ui.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.collapsible.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.orderable.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.duplicator.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.layout.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.tags.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.selectable.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.js"></script><title>Symphony – Extensions</title>
+</head>
+<body><form action="../../../../system/extensions/type/Event">
+<h1><a href="http://home/sym3/beta/">Symphony CMS</a></h1>
+<ul id="session">
+<li><a href="../../../../system/users/edit/1/">John Smith</a></li>
+<li><a href="../../../../logout/">Logout</a></li>
+</ul>
+<ul id="nav">
+<li id="nav-training">Training<ul>
+<li><a href="../../../../publish/categories/">Categories</a></li>
+<li><a href="../../../../publish/courses/">Courses</a></li>
+<li><a href="../../../../publish/types/">Types</a></li>
+</ul>
+</li>
+<li id="nav-employees">Employees<ul><li><a href="../../../../publish/registrations/">Registrations</a></li></ul>
+</li>
+<li id="nav-system" class="active">System<ul>
+<li><a href="../../../../system/users/">Users</a></li>
+<li><a href="../../../../system/settings/">Settings</a></li>
+<li><a href="../../../../system/extensions/">Extensions</a></li>
+<li><a href="../../../../extension/aac/roles/">User Roles</a></li>
+</ul>
+</li>
+<li id="nav-blueprints">Blueprints<ul>
+<li><a href="../../../../blueprints/views/">Views</a></li>
+<li><a href="../../../../blueprints/sections/">Sections</a></li>
+<li><a href="../../../../blueprints/datasources/">Data Sources</a></li>
+<li><a href="../../../../blueprints/events/">Events</a></li>
+<li><a href="../../../../blueprints/utilities/">Utilities</a></li>
+</ul>
+</li>
+</ul>
+<h2>Extensions</h2>
+<div class="columns type-sl" id="layout">
+<div class="column small filters">
+<h4>Filter by Status</h4>
+<ul>
+<li><a href="../../../../system/extensions/">Overview</a></li>
+<li>
+<a href="../../../../system/extensions/status/enabled">Enabled</a><span>20</span>
+</li>
+</ul>
+<h4>Filter by Type</h4>
+<ul>
+<li>
+<a href="../../../../system/extensions/type/Data%20Source">Data Source</a><span>6</span>
+</li>
+<li>
+<a href="../../../../system/extensions/type/Core">Core</a><span>15</span>
+</li>
+<li class="active">
+<a href="../../../../system/extensions/type/Event">Event</a><span>2</span>
+</li>
+<li>
+<a href="../../../../system/extensions/type/Field">Field</a><span>8</span>
+</li>
+</ul>
+</div>
+<div class="column large">
+<table>
+<thead><tr>
+<th scope="col">Name</th>
+<th scope="col">Version</th>
+<th scope="col">Author</th>
+<th class="row-actions" scope="col">Actions</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Gravatar DataSource</td>
+<td>1.0.0</td>
+<td>
+<a href="http://symphony-cms.com/">Symphony Team</a><input name="items[ds_gravatar]" type="checkbox" value="on">
+</td>
+<td>
+<input class="button delete" name="action[uninstall][ds_gravatar]" type="submit" value="Uninstall"><input class="button" name="action[disable][ds_gravatar]" type="submit" value="Disable">
+</td>
+</tr>
+<tr>
+<td>Sections DataSource and Event</td>
+<td>1.0.0</td>
+<td>
+<a href="http://symphony-cms.com/">Symphony Team</a><input name="items[ds_sections]" type="checkbox" value="on">
+</td>
+<td>
+<input class="button delete" name="action[uninstall][ds_sections]" type="submit" value="Uninstall"><input class="button" name="action[disable][ds_sections]" type="submit" value="Disable">
+</td>
+</tr>
+</tbody>
+</table>
+<div class="actions">
+<select name="with-selected"><option value="">With Selected...</option>
+<option value="enable">Enable</option>
+<option value="disable">Disable</option>
+<option value="uninstall" class="confirm">Uninstall</option></select><input name="action[apply]" type="submit" value="Apply">
+</div>
+</div>
+</div>
+</form></body>
+</html>

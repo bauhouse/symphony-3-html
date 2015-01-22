@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" rel="stylesheet" media="screen" href="../../../../assets/css/symphony.css">
+<link type="text/css" rel="stylesheet" media="screen" href="../../../../assets/css/symphony.duplicator.css">
+<link type="text/css" rel="stylesheet" media="screen" href="../../../../assets/css/symphony.layout.css">
+<script type="text/javascript" src="../../../../assets/js/jquery.js"></script><script type="text/javascript" src="../../../../assets/js/jquery-ui.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.collapsible.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.orderable.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.duplicator.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.layout.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.tags.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.selectable.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.js"></script><title>Symphony – Extensions</title>
+</head>
+<body><form action="../../../../system/extensions/status/enabled">
+<h1><a href="http://home/sym3/beta/">Symphony CMS</a></h1>
+<ul id="session">
+<li><a href="../../../../system/users/edit/1/">John Smith</a></li>
+<li><a href="../../../../logout/">Logout</a></li>
+</ul>
+<ul id="nav">
+<li id="nav-training">Training<ul>
+<li><a href="../../../../publish/categories/">Categories</a></li>
+<li><a href="../../../../publish/courses/">Courses</a></li>
+<li><a href="../../../../publish/types/">Types</a></li>
+</ul>
+</li>
+<li id="nav-employees">Employees<ul><li><a href="../../../../publish/registrations/">Registrations</a></li></ul>
+</li>
+<li id="nav-system" class="active">System<ul>
+<li><a href="../../../../system/users/">Users</a></li>
+<li><a href="../../../../system/settings/">Settings</a></li>
+<li><a href="../../../../system/extensions/">Extensions</a></li>
+<li><a href="../../../../extension/aac/roles/">User Roles</a></li>
+</ul>
+</li>
+<li id="nav-blueprints">Blueprints<ul>
+<li><a href="../../../../blueprints/views/">Views</a></li>
+<li><a href="../../../../blueprints/sections/">Sections</a></li>
+<li><a href="../../../../blueprints/datasources/">Data Sources</a></li>
+<li><a href="../../../../blueprints/events/">Events</a></li>
+<li><a href="../../../../blueprints/utilities/">Utilities</a></li>
+</ul>
+</li>
+</ul>
+<h2>Extensions</h2>
+<div class="columns type-sl" id="layout">
+<div class="column small filters">
+<h4>Filter by Status</h4>
+<ul>
+<li><a href="../../../../system/extensions/">Overview</a></li>
+<li class="active">
+<a href="../../../../system/extensions/status/enabled">Enabled</a><span>20</span>
+</li>
+</ul>
+<h4>Filter by Type</h4>
+<ul>
+<li>
+<a href="../../../../system/extensions/type/Data%20Source">Data Source</a><span>6</span>
+</li>
+<li>
+<a href="../../../../system/extensions/type/Core">Core</a><span>15</span>
+</li>
+<li>
+<a href="../../../../system/extensions/type/Event">Event</a><span>2</span>
+</li>
+<li>
+<a href="../../../../system/extensions/type/Field">Field</a><span>8</span>
+</li>
+</ul>
+</div>
+<div class="column large">
+<table>
+<thead><tr>
+<th scope="col">Name</th>
+<th scope="col">Version</th>
+<th scope="col">Author</th>
+<th class="row-actions" scope="col">Actions</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Administration Access Control</td>
+<td>1.0</td>
+<td>
+<a href="http://alistairkearney.com">Alistair Kearney</a><input name="items[aac]" type="checkbox" value="on">
+</td>
+<td>
+<input class="button delete" name="action[uninstall][aac]" type="submit" value="Uninstall"><input class="button" name="action[disable][aac]" type="submit" value="Disable">
+</td>
+</tr>
+<tr>
+<td>Debug DevKit</td>
+<td>2.0</td>
+<td>
+<a href="http://rowanlewis.com/">Rowan Lewis</a><input name="items[devkit_debug]" type="checkbox" value="on">
+</td>
+<td>
+<input class="button delete" name="action[uninstall][devkit_debug]" type="submit" value="Uninstall"><input class="button" name="action[disable][devkit_debug]" type="submit" value="Disable">
+</td>
+</tr>
+<tr>
+<td>Dynamic XML DataSource</td>
+<td>1.0.0</td>
+<td>
+<a href="http://symphony-cms.com/">Symphony Team</a><input name="items[ds_dynamicxml]" type="checkbox" value="on">
+</td>
+<td>
+<input class="button delete" name="action[uninstall][ds_dynamicxml]" type="submit" value="Uninstall"><input class="button" name="action[disable][ds_dynamicxml]" type="submit" value="Disable">
+</td>
+</tr>
+<tr>
+<td>Gravatar DataSource</td>
+<td>1.0.0</td>
+<td>
+<a href="http://symphony-cms.com/">Symphony Team</a><input name="items[ds_gravatar]" type="checkbox" value="on">
+</td>
+<td>
+<input class="button delete" name="action[uninstall][ds_gravatar]" type="submit" value="Uninstall"><input class="button" name="action[disable][ds_gravatar]" type="submit" value="Disable">
+</td>
+</tr>
+<tr>
+<td>Sections DataSource and Event</td>
+<td>1.0.0</td>
+<td>
+<a href="http://symphony-cms.com/">Symphony Team</a><input name="items[ds_sections]" type="checkbox" value="on">
+</td>
+<td>
+<input class="button delete" name="action[uninstall][ds_sections]" type="submit" value="Uninstall"><input class="button" name="action[disable][ds_sections]" type="submit" value="Disable">
+</td>
+</tr>
+<tr>
+<td>Static XML DataSource</td>
+<td>1.0.0</td>
+<td>
+<a href="http://symphony-cms.com/">Symphony Team</a><input name="items[ds_staticxml]" type="checkbox" value="on">
+</td>
+<td>
+<input class="button delete" name="action[uninstall][ds_staticxml]" type="submit" value="Uninstall"><input class="button" name="action[disable][ds_staticxml]" type="submit" value="Disable">
+</td>
+</tr>
+<tr>
+<td>Users DataSource</td>
+<td>1.0.0</td>
+<td>
+<a href="http://symphony-cms.com/">Symphony Team</a><input name="items[ds_users]" type="checkbox" value="on">
+</td>
+<td>
+<input class="button delete" name="action[uninstall][ds_users]" type="submit" value="Uninstall"><input class="button" name="action[disable][ds_users]" type="submit" value="Disable">
+</td>
+</tr>
+<tr>
+<td>Views DataSource</td>
+<td>1.0.0</td>
+<td>
+<a href="http://symphony-cms.com/">Symphony Team</a><input name="items[ds_views]" type="checkbox" value="on">
+</td>
+<td>
+<input class="button delete" name="action[uninstall][ds_views]" type="submit" value="Uninstall"><input class="button" name="action[disable][ds_views]" type="submit" value="Disable">
+</td>
+</tr>
+<tr>
+<td>Export Ensemble</td>
+<td>2.0</td>
+<td>
+<a href="http://alistairkearney.com">Alistair Kearney</a><input name="items[export_ensemble]" type="checkbox" value="on">
+</td>
+<td>
+<input class="button delete" name="action[uninstall][export_ensemble]" type="submit" value="Uninstall"><input class="button" name="action[disable][export_ensemble]" type="submit" value="Disable">
+</td>
+</tr>
+<tr>
+<td>Checkbox</td>
+<td>2.0.0</td>
+<td>
+<a href="http://symphony-cms.com/">Symphony Team</a><input name="items[field_checkbox]" type="checkbox" value="on">
+</td>
+<td>
+<input class="button delete" name="action[uninstall][field_checkbox]" type="submit" value="Uninstall"><input class="button" name="action[disable][field_checkbox]" type="submit" value="Disable">
+</td>
+</tr>
+<tr>
+<td>Date</td>
+<td>2.0.0</td>
+<td>
+<a href="http://symphony-cms.com/">Symphony Team</a><input name="items[field_date]" type="checkbox" value="on">
+</td>
+<td>
+<input class="button delete" name="action[uninstall][field_date]" type="submit" value="Uninstall"><input class="button" name="action[disable][field_date]" type="submit" value="Disable">
+</td>
+</tr>
+<tr>
+<td>Link</td>
+<td>2.0.0</td>
+<td>
+<a href="http://www.symphony-cms.com">Symphony Team</a><input name="items[field_link]" type="checkbox" value="on">
+</td>
+<td>
+<input class="button delete" name="action[uninstall][field_link]" type="submit" value="Uninstall"><input class="button" name="action[disable][field_link]" type="submit" value="Disable">
+</td>
+</tr>
+<tr>
+<td>Selectbox</td>
+<td>2.0.0</td>
+<td>
+<a href="http://symphony-cms.com/">Symphony Team</a><input name="items[field_selectbox]" type="checkbox" value="on">
+</td>
+<td>
+<input class="button delete" name="action[uninstall][field_selectbox]" type="submit" value="Uninstall"><input class="button" name="action[disable][field_selectbox]" type="submit" value="Disable">
+</td>
+</tr>
+<tr>
+<td>Taglist</td>
+<td>2.0.0</td>
+<td>
+<a href="http://symphony-cms.com/">Symphony Team</a><input name="items[field_taglist]" type="checkbox" value="on">
+</td>
+<td>
+<input class="button delete" name="action[uninstall][field_taglist]" type="submit" value="Uninstall"><input class="button" name="action[disable][field_taglist]" type="submit" value="Disable">
+</td>
+</tr>
+<tr>
+<td>Text Box</td>
+<td>2.0.17</td>
+<td>
+<a href="http://rowanlewis.com/">Rowan Lewis</a><input name="items[field_textbox]" type="checkbox" value="on">
+</td>
+<td>
+<input class="button delete" name="action[uninstall][field_textbox]" type="submit" value="Uninstall"><input class="button" name="action[disable][field_textbox]" type="submit" value="Disable">
+</td>
+</tr>
+<tr>
+<td>Upload</td>
+<td>2.0.0</td>
+<td>
+<a href="http://rowanlewis.com/">Rowan Lewis</a><input name="items[field_upload]" type="checkbox" value="on">
+</td>
+<td>
+<input class="button delete" name="action[uninstall][field_upload]" type="submit" value="Uninstall"><input class="button" name="action[disable][field_upload]" type="submit" value="Disable">
+</td>
+</tr>
+<tr>
+<td>User</td>
+<td>2.0.0</td>
+<td>
+<a href="http://symphony-cms.com/">Symphony Team</a><input name="items[field_user]" type="checkbox" value="on">
+</td>
+<td>
+<input class="button delete" name="action[uninstall][field_user]" type="submit" value="Uninstall"><input class="button" name="action[disable][field_user]" type="submit" value="Disable">
+</td>
+</tr>
+<tr>
+<td>JIT Image Manipulation</td>
+<td>2.0.0</td>
+<td>
+<a href="http://alistairkearney.com">Alistair Kearney</a><input name="items[jit_image_manipulation]" type="checkbox" value="on">
+</td>
+<td>
+<input class="button delete" name="action[uninstall][jit_image_manipulation]" type="submit" value="Uninstall"><input class="button" name="action[disable][jit_image_manipulation]" type="submit" value="Disable">
+</td>
+</tr>
+<tr>
+<td>Maintenance Mode</td>
+<td>1.2</td>
+<td>
+<a href="http://pointybeard.com">Alistair Kearney</a><input name="items[maintenance_mode]" type="checkbox" value="on">
+</td>
+<td>
+<input class="button delete" name="action[uninstall][maintenance_mode]" type="submit" value="Uninstall"><input class="button" name="action[disable][maintenance_mode]" type="submit" value="Disable">
+</td>
+</tr>
+<tr>
+<td>Text Formatter: Markdown</td>
+<td>1.11</td>
+<td>
+<a href="http://symphony-cms.com">Alistair Kearney</a><input name="items[markdown]" type="checkbox" value="on">
+</td>
+<td>
+<input class="button delete" name="action[uninstall][markdown]" type="submit" value="Uninstall"><input class="button" name="action[disable][markdown]" type="submit" value="Disable">
+</td>
+</tr>
+</tbody>
+</table>
+<div class="actions">
+<select name="with-selected"><option value="">With Selected...</option>
+<option value="enable">Enable</option>
+<option value="disable">Disable</option>
+<option value="uninstall" class="confirm">Uninstall</option></select><input name="action[apply]" type="submit" value="Apply">
+</div>
+</div>
+</div>
+</form></body>
+</html>

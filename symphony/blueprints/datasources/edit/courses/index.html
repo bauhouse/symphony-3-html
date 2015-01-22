@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" rel="stylesheet" media="screen" href="../../../../assets/css/symphony.css">
+<link type="text/css" rel="stylesheet" media="screen" href="../../../../assets/css/symphony.duplicator.css">
+<link type="text/css" rel="stylesheet" media="screen" href="../../../../assets/css/symphony.layout.css">
+<script type="text/javascript" src="../../../../assets/js/jquery.js"></script><script type="text/javascript" src="../../../../assets/js/jquery-ui.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.collapsible.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.orderable.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.duplicator.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.layout.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.tags.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.selectable.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.js"></script><title>Symphony – Data Sources – Courses</title>
+<script type="text/javascript" src="http://home/sym3/beta/extensions/ds_sections/assets/view.js"></script>
+</head>
+<body><form action="../../../../blueprints/datasources/edit/courses">
+<h1><a href="http://home/sym3/beta/">Symphony CMS</a></h1>
+<ul id="session">
+<li><a href="../../../../system/users/edit/1/">John Smith</a></li>
+<li><a href="../../../../logout/">Logout</a></li>
+</ul>
+<ul id="nav">
+<li id="nav-training">Training<ul>
+<li><a href="../../../../publish/categories/">Categories</a></li>
+<li><a href="../../../../publish/courses/">Courses</a></li>
+<li><a href="../../../../publish/types/">Types</a></li>
+</ul>
+</li>
+<li id="nav-employees">Employees<ul><li><a href="../../../../publish/registrations/">Registrations</a></li></ul>
+</li>
+<li id="nav-system">System<ul>
+<li><a href="../../../../system/users/">Users</a></li>
+<li><a href="../../../../system/settings/">Settings</a></li>
+<li><a href="../../../../system/extensions/">Extensions</a></li>
+<li><a href="../../../../extension/aac/roles/">User Roles</a></li>
+</ul>
+</li>
+<li id="nav-blueprints" class="active">Blueprints<ul>
+<li><a href="../../../../blueprints/views/">Views</a></li>
+<li><a href="../../../../blueprints/sections/">Sections</a></li>
+<li><a href="../../../../blueprints/datasources/">Data Sources</a></li>
+<li><a href="../../../../blueprints/events/">Events</a></li>
+<li><a href="../../../../blueprints/utilities/">Utilities</a></li>
+</ul>
+</li>
+</ul>
+<h2>Courses</h2>
+<input name="type" type="hidden" value="SectionsDataSource"><div class="columns type-ss" id="layout">
+<div class="column small">
+<fieldset>
+<h3>Essentials</h3>
+<label>Name<input name="fields[about][name]" type="text" value="Courses"></label><label>Section<select id="context" name="fields[section]"><option value="categories">Categories</option>
+<option value="courses" selected>Courses</option>
+<option value="registrations">Registrations</option>
+<option value="types">Types</option></select></label>
+</fieldset>
+<fieldset>
+<h3>Conditions</h3>
+<p class="help"><code>$param</code></p>
+<div class="duplicator-widget orderable-widget">
+<ol class="controls"><li class="add">Add Condition</li></ol>
+<ol class="templates"><li class="template">
+<span class="name">Don't Execute When</span><div class="group double">
+<label>Parameter<input name="fields[conditions][parameter][]" type="text"></label><label>Logic<select class="filtered" name="fields[conditions][logic][]"><option value="empty" selected>is empty</option>
+<option value="set">is set</option></select></label>
+</div>
+</li></ol>
+<div class="content">
+<ol class="tabs"></ol>
+<ol class="instances"></ol>
+</div>
+</div>
+</fieldset>
+<fieldset>
+<h3>Filtering</h3>
+<p class="help"><code>{$param}</code> or <code>Value</code></p>
+<div>
+<div class="duplicator-widget orderable-widget filtering-duplicator context context-categories">
+<ol class="controls"><li class="add">Add Filter</li></ol>
+<ol class="templates">
+<li class="template">
+<span class="name">System ID</span><div class="group">
+<label class="small">Type<select name="type"><option value="is">Is</option>
+<option value="is-not">Is not</option></select></label><label>Value<input name="value" type="text"><input name="element-name" type="hidden" value="system:id"></label>
+</div>
+</li>
+<li class="template">
+<span class="name">Category<em>Text Box</em></span><div class="group">
+<label class="small">Type<select name="type"><option value="is">Is</option>
+<option value="is-not">Is not</option>
+<option value="contains">Contains</option>
+<option value="does-not-contain">Does not Contain</option>
+<option value="regex-search">Regex Search</option>
+<option value="boolean-search">Boolean Search</option></select></label><label>Value<input name="value" type="text"><input name="element-name" type="hidden" value="category"></label>
+</div>
+</li>
+<li class="template">
+<span class="name">Description<em>Text Box</em></span><div class="group">
+<label class="small">Type<select name="type"><option value="is">Is</option>
+<option value="is-not">Is not</option>
+<option value="contains">Contains</option>
+<option value="does-not-contain">Does not Contain</option>
+<option value="regex-search">Regex Search</option>
+<option value="boolean-search">Boolean Search</option></select></label><label>Value<input name="value" type="text"><input name="element-name" type="hidden" value="description"></label>
+</div>
+</li>
+<li class="template">
+<span class="name">Type<em>Select Box</em></span><div class="group">
+<label class="small">Type<select name="type"><option value="is">Is</option>
+<option value="is-not">Is not</option>
+<option value="contains">Contains</option>
+<option value="does-not-contain">Does not Contain</option>
+<option value="regex-search">Regex Search</option></select></label><div><label>Value<input name="value" type="text"><input name="element-name" type="hidden" value="type"></label></div>
+</div>
+</li>
+</ol>
+<div class="content">
+<ol class="tabs"></ol>
+<ol class="instances"></ol>
+</div>
+</div>
+<div class="duplicator-widget orderable-widget filtering-duplicator context context-courses">
+<ol class="controls"><li class="add">Add Filter</li></ol>
+<ol class="templates">
+<li class="template">
+<span class="name">System ID</span><div class="group">
+<label class="small">Type<select name="type"><option value="is">Is</option>
+<option value="is-not">Is not</option></select></label><label>Value<input name="value" type="text"><input name="element-name" type="hidden" value="system:id"></label>
+</div>
+</li>
+<li class="template">
+<span class="name">Title<em>Text Box</em></span><div class="group">
+<label class="small">Type<select name="type"><option value="is">Is</option>
+<option value="is-not">Is not</option>
+<option value="contains">Contains</option>
+<option value="does-not-contain">Does not Contain</option>
+<option value="regex-search">Regex Search</option>
+<option value="boolean-search">Boolean Search</option></select></label><label>Value<input name="value" type="text"><input name="element-name" type="hidden" value="title"></label>
+</div>
+</li>
+<li class="template">
+<span class="name">Category<em>Select Box</em></span><div class="group">
+<label class="small">Type<select name="type"><option value="is">Is</option>
+<option value="is-not">Is not</option>
+<option value="contains">Contains</option>
+<option value="does-not-contain">Does not Contain</option>
+<option value="regex-search">Regex Search</option></select></label><div><label>Value<input name="value" type="text"><input name="element-name" type="hidden" value="category"></label></div>
+</div>
+</li>
+<li class="template">
+<span class="name">Description<em>Text Box</em></span><div class="group">
+<label class="small">Type<select name="type"><option value="is">Is</option>
+<option value="is-not">Is not</option>
+<option value="contains">Contains</option>
+<option value="does-not-contain">Does not Contain</option>
+<option value="regex-search">Regex Search</option>
+<option value="boolean-search">Boolean Search</option></select></label><label>Value<input name="value" type="text"><input name="element-name" type="hidden" value="description"></label>
+</div>
+</li>
+<li class="template">
+<span class="name">Body<em>Text Box</em></span><div class="group">
+<label class="small">Type<select name="type"><option value="is">Is</option>
+<option value="is-not">Is not</option>
+<option value="contains">Contains</option>
+<option value="does-not-contain">Does not Contain</option>
+<option value="regex-search">Regex Search</option>
+<option value="boolean-search">Boolean Search</option></select></label><label>Value<input name="value" type="text"><input name="element-name" type="hidden" value="body"></label>
+</div>
+</li>
+<li class="template">
+<span class="name">Tags<em>Tag List</em></span><div class="group">
+<label class="small">Type<select name="type"><option value="is">Is</option>
+<option value="is-not">Is not</option>
+<option value="contains">Contains</option>
+<option value="does-not-contain">Does not Contain</option>
+<option value="regex-search">Regex Search</option></select></label><div><label>Value<input name="value" type="text"><input name="element-name" type="hidden" value="tags"></label></div>
+</div>
+</li>
+<li class="template">
+<span class="name">Publish<em>Checkbox</em></span><div class="group">
+<label class="small">Type<select name="type"><option value="is">Is</option>
+<option value="is-not">Is not</option>
+<option value="contains">Contains</option>
+<option value="does-not-contain">Does not Contain</option>
+<option value="regex-search">Regex Search</option></select></label><div>
+<label>Value<input name="value" type="text"><input name="element-name" type="hidden" value="publish"></label><ul class="tags">
+<li>yes</li>
+<li>no</li>
+</ul>
+</div>
+</div>
+</li>
+</ol>
+<div class="content">
+<ol class="tabs"></ol>
+<ol class="instances"></ol>
+</div>
+</div>
+<div class="duplicator-widget orderable-widget filtering-duplicator context context-registrations">
+<ol class="controls"><li class="add">Add Filter</li></ol>
+<ol class="templates">
+<li class="template">
+<span class="name">System ID</span><div class="group">
+<label class="small">Type<select name="type"><option value="is">Is</option>
+<option value="is-not">Is not</option></select></label><label>Value<input name="value" type="text"><input name="element-name" type="hidden" value="system:id"></label>
+</div>
+</li>
+<li class="template">
+<span class="name">First Name<em>Text Box</em></span><div class="group">
+<label class="small">Type<select name="type"><option value="is">Is</option>
+<option value="is-not">Is not</option>
+<option value="contains">Contains</option>
+<option value="does-not-contain">Does not Contain</option>
+<option value="regex-search">Regex Search</option>
+<option value="boolean-search">Boolean Search</option></select></label><label>Value<input name="value" type="text"><input name="element-name" type="hidden" value="first-name"></label>
+</div>
+</li>
+<li class="template">
+<span class="name">Last Name<em>Text Box</em></span><div class="group">
+<label class="small">Type<select name="type"><option value="is">Is</option>
+<option value="is-not">Is not</option>
+<option value="contains">Contains</option>
+<option value="does-not-contain">Does not Contain</option>
+<option value="regex-search">Regex Search</option>
+<option value="boolean-search">Boolean Search</option></select></label><label>Value<input name="value" type="text"><input name="element-name" type="hidden" value="last-name"></label>
+</div>
+</li>
+<li class="template">
+<span class="name">Member Number<em>Text Box</em></span><div class="group">
+<label class="small">Type<select name="type"><option value="is">Is</option>
+<option value="is-not">Is not</option>
+<option value="contains">Contains</option>
+<option value="does-not-contain">Does not Contain</option>
+<option value="regex-search">Regex Search</option>
+<option value="boolean-search">Boolean Search</option></select></label><label>Value<input name="value" type="text"><input name="element-name" type="hidden" value="member-number"></label>
+</div>
+</li>
+<li class="template">
+<span class="name">Birth Date<em>Date</em></span><div class="group">
+<label class="small">Type<select name="type"><option value="is">Is</option>
+<option value="is-not">Is not</option>
+<option value="earlier-than">Earlier than</option>
+<option value="earlier-than-or-equal">Earlier than or equal</option>
+<option value="later-than">Later than</option>
+<option value="later-than-or-equal">Later than or equal</option></select></label><label>Value<input name="value" type="text"><input name="element-name" type="hidden" value="birth-date"></label>
+</div>
+</li>
+<li class="template">
+<span class="name">Role<em>Select Box</em></span><div class="group">
+<label class="small">Type<select name="type"><option value="is">Is</option>
+<option value="is-not">Is not</option>
+<option value="contains">Contains</option>
+<option value="does-not-contain">Does not Contain</option>
+<option value="regex-search">Regex Search</option></select></label><div>
+<label>Value<input name="value" type="text"><input name="element-name" type="hidden" value="role"></label><ul class="tags">
+<li>Staff</li>
+<li>Manager</li>
+<li>Administrator</li>
+<li>Executive</li>
+<li>Board Member</li>
+<li>President</li>
+</ul>
+</div>
+</div>
+</li>
+<li class="template">
+<span class="name">Active<em>Checkbox</em></span><div class="group">
+<label class="small">Type<select name="type"><option value="is">Is</option>
+<option value="is-not">Is not</option>
+<option value="contains">Contains</option>
+<option value="does-not-contain">Does not Contain</option>
+<option value="regex-search">Regex Search</option></select></label><div>
+<label>Value<input name="value" type="text"><input name="element-name" type="hidden" value="active"></label><ul class="tags">
+<li>yes</li>
+<li>no</li>
+</ul>
+</div>
+</div>
+</li>
+</ol>
+<div class="content">
+<ol class="tabs"></ol>
+<ol class="instances"></ol>
+</div>
+</div>
+<div class="duplicator-widget orderable-widget filtering-duplicator context context-types">
+<ol class="controls"><li class="add">Add Filter</li></ol>
+<ol class="templates">
+<li class="template">
+<span class="name">System ID</span><div class="group">
+<label class="small">Type<select name="type"><option value="is">Is</option>
+<option value="is-not">Is not</option></select></label><label>Value<input name="value" type="text"><input name="element-name" type="hidden" value="system:id"></label>
+</div>
+</li>
+<li class="template">
+<span class="name">Description<em>Text Box</em></span><div class="group">
+<label class="small">Type<select name="type"><option value="is">Is</option>
+<option value="is-not">Is not</option>
+<option value="contains">Contains</option>
+<option value="does-not-contain">Does not Contain</option>
+<option value="regex-search">Regex Search</option>
+<option value="boolean-search">Boolean Search</option></select></label><label>Value<input name="value" type="text"><input name="element-name" type="hidden" value="description"></label>
+</div>
+</li>
+<li class="template">
+<span class="name">Type<em>Text Box</em></span><div class="group">
+<label class="small">Type<select name="type"><option value="is">Is</option>
+<option value="is-not">Is not</option>
+<option value="contains">Contains</option>
+<option value="does-not-contain">Does not Contain</option>
+<option value="regex-search">Regex Search</option>
+<option value="boolean-search">Boolean Search</option></select></label><label>Value<input name="value" type="text"><input name="element-name" type="hidden" value="type"></label>
+</div>
+</li>
+</ol>
+<div class="content">
+<ol class="tabs"></ol>
+<ol class="instances"></ol>
+</div>
+</div>
+</div>
+</fieldset>
+</div>
+<div class="column small">
+<fieldset>
+<h3>Sorting</h3>
+<div>
+<label class="context context-categories">Sort By<select class="filtered" name="fields[sort-field]"><option value="system:id">System ID</option>
+<option value="system:creation-date">System Creation Date</option>
+<option value="system:modification-date">System Modification Date</option>
+<option value="category">category</option>
+<option value="description">description</option>
+<option value="type">type</option></select></label><label class="context context-courses">Sort By<select class="filtered" name="fields[sort-field]"><option value="system:id" selected>System ID</option>
+<option value="system:creation-date">System Creation Date</option>
+<option value="system:modification-date">System Modification Date</option>
+<option value="title">title</option>
+<option value="category">category</option>
+<option value="description">description</option>
+<option value="body">body</option>
+<option value="publish">publish</option></select></label><label class="context context-registrations">Sort By<select class="filtered" name="fields[sort-field]"><option value="system:id">System ID</option>
+<option value="system:creation-date">System Creation Date</option>
+<option value="system:modification-date">System Modification Date</option>
+<option value="first-name">first-name</option>
+<option value="last-name">last-name</option>
+<option value="member-number">member-number</option>
+<option value="birth-date">birth-date</option>
+<option value="role">role</option>
+<option value="active">active</option></select></label><label class="context context-types">Sort By<select class="filtered" name="fields[sort-field]"><option value="system:id">System ID</option>
+<option value="system:creation-date">System Creation Date</option>
+<option value="system:modification-date">System Modification Date</option>
+<option value="description">description</option>
+<option value="type">type</option></select></label>
+</div>
+<label>Sort Order<select name="fields[sort-order]"><option value="asc" selected>Acending</option>
+<option value="desc">Descending</option>
+<option value="random">Random</option></select></label>
+</fieldset>
+<fieldset>
+<h3>Limiting</h3>
+<p class="help"><code>{$param}</code> or <code>Value</code></p>
+<label>Limit results per page<input name="fields[limit]" type="text" value="20"></label><label>Show page of results<input name="fields[page]" type="text" value="1"></label><input name="fields[redirect-404-on-empty]" type="hidden" value="no"><label><input name="fields[redirect-404-on-empty]" type="checkbox" value="yes">Redirect to 404 page when no results are found</label>
+</fieldset>
+<fieldset>
+<h3>Output Options</h3>
+<div class="group context context-categories">
+<label>Parameter Output<select name="fields[parameter-output][]" class="filtered" multiple><option value="system:id">$ds-?.system.id</option>
+<option value="system:creation-date">$ds-?.system.creation-date</option>
+<option value="system:modification-date">$ds-?.system.modification-date</option>
+<option value="system:user">$ds-?.system.user</option>
+<option value="category">$ds-?.category</option>
+<option value="description">$ds-?.description</option>
+<option value="type">$ds-?.type</option></select></label><label>Included XML Elements<select name="fields[included-elements][]" class="filtered" multiple><option value="system:creation-date">system:creation-date</option>
+<option value="system:modification-date">system:modification-date</option>
+<option value="system:user">system:user</option>
+<option value="category: formatted">category: formatted</option>
+<option value="category: unformatted">category: unformatted</option>
+<option value="description: formatted">description: formatted</option>
+<option value="description: unformatted">description: unformatted</option>
+<option value="type">type</option></select></label>
+</div>
+<div class="group context context-courses">
+<label>Parameter Output<select name="fields[parameter-output][]" class="filtered" multiple><option value="system:id" selected>$ds-?.system.id</option>
+<option value="system:creation-date">$ds-?.system.creation-date</option>
+<option value="system:modification-date">$ds-?.system.modification-date</option>
+<option value="system:user">$ds-?.system.user</option>
+<option value="title">$ds-?.title</option>
+<option value="category">$ds-?.category</option>
+<option value="description">$ds-?.description</option>
+<option value="body">$ds-?.body</option>
+<option value="tags">$ds-?.tags</option></select></label><label>Included XML Elements<select name="fields[included-elements][]" class="filtered" multiple><option value="system:creation-date">system:creation-date</option>
+<option value="system:modification-date">system:modification-date</option>
+<option value="system:user">system:user</option>
+<option value="title: formatted">title: formatted</option>
+<option value="title: unformatted" selected>title: unformatted</option>
+<option value="category" selected>category</option>
+<option value="description: formatted" selected>description: formatted</option>
+<option value="description: unformatted">description: unformatted</option>
+<option value="body: formatted" selected>body: formatted</option>
+<option value="body: unformatted">body: unformatted</option>
+<option value="tags" selected>tags</option>
+<option value="publish" selected>publish</option></select></label>
+</div>
+<div class="group context context-registrations">
+<label>Parameter Output<select name="fields[parameter-output][]" class="filtered" multiple><option value="system:id">$ds-?.system.id</option>
+<option value="system:creation-date">$ds-?.system.creation-date</option>
+<option value="system:modification-date">$ds-?.system.modification-date</option>
+<option value="system:user">$ds-?.system.user</option>
+<option value="first-name">$ds-?.first-name</option>
+<option value="last-name">$ds-?.last-name</option>
+<option value="member-number">$ds-?.member-number</option>
+<option value="birth-date">$ds-?.birth-date</option>
+<option value="role">$ds-?.role</option></select></label><label>Included XML Elements<select name="fields[included-elements][]" class="filtered" multiple><option value="system:creation-date">system:creation-date</option>
+<option value="system:modification-date">system:modification-date</option>
+<option value="system:user">system:user</option>
+<option value="first-name: formatted">first-name: formatted</option>
+<option value="first-name: unformatted">first-name: unformatted</option>
+<option value="last-name: formatted">last-name: formatted</option>
+<option value="last-name: unformatted">last-name: unformatted</option>
+<option value="member-number: formatted">member-number: formatted</option>
+<option value="member-number: unformatted">member-number: unformatted</option>
+<option value="birth-date">birth-date</option>
+<option value="role">role</option>
+<option value="active">active</option></select></label>
+</div>
+<div class="group context context-types">
+<label>Parameter Output<select name="fields[parameter-output][]" class="filtered" multiple><option value="system:id">$ds-?.system.id</option>
+<option value="system:creation-date">$ds-?.system.creation-date</option>
+<option value="system:modification-date">$ds-?.system.modification-date</option>
+<option value="system:user">$ds-?.system.user</option>
+<option value="description">$ds-?.description</option>
+<option value="type">$ds-?.type</option></select></label><label>Included XML Elements<select name="fields[included-elements][]" class="filtered" multiple><option value="system:creation-date">system:creation-date</option>
+<option value="system:modification-date">system:modification-date</option>
+<option value="system:user">system:user</option>
+<option value="description: formatted">description: formatted</option>
+<option value="description: unformatted">description: unformatted</option>
+<option value="type: formatted">type: formatted</option>
+<option value="type: unformatted">type: unformatted</option></select></label>
+</div>
+<input name="fields[append-pagination]" type="hidden" value="no"><label><input name="fields[append-pagination]" type="checkbox" value="yes">Append pagination data</label><input name="fields[append-sorting]" type="hidden" value="no"><label><input name="fields[append-sorting]" type="checkbox" value="yes">Append sorting data</label>
+</fieldset>
+</div>
+</div>
+<div class="actions">
+<button accesskey="s" name="action[save]" type="submit"><span>Save Changes</span></button><button class="confirm delete" title="Delete this data source" name="action[delete]" type="submit"><span>Delete</span></button>
+</div>
+</form></body>
+</html>

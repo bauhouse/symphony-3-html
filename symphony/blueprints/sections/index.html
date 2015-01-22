@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" rel="stylesheet" media="screen" href="../../assets/css/symphony.css">
+<link type="text/css" rel="stylesheet" media="screen" href="../../assets/css/symphony.duplicator.css">
+<link type="text/css" rel="stylesheet" media="screen" href="../../assets/css/symphony.layout.css">
+<script type="text/javascript" src="../../assets/js/jquery.js"></script>
+<script type="text/javascript" src="../../assets/js/jquery-ui.js"></script>
+<script type="text/javascript" src="../../assets/js/symphony.collapsible.js"></script>
+<script type="text/javascript" src="../../assets/js/symphony.orderable.js"></script>
+<script type="text/javascript" src="../../assets/js/symphony.duplicator.js"></script>
+<script type="text/javascript" src="../../assets/js/symphony.layout.js"></script>
+<script type="text/javascript" src="../../assets/js/symphony.tags.js"></script>
+<script type="text/javascript" src="../../assets/js/symphony.selectable.js"></script>
+<script type="text/javascript" src="../../assets/js/symphony.js"></script>
+<title>Symphony – Sections</title>
+</head>
+<body><form action=".">
+<h1><a href="../../../">Symphony CMS</a></h1>
+<ul id="session">
+<li><a href="../../system/users/edit/1/">John Smith</a></li>
+<li><a href="../../../">Logout</a></li>
+</ul>
+<ul id="nav">
+<li id="nav-training">Training<ul>
+<li><a href="../../publish/categories/">Categories</a></li>
+<li><a href="../../publish/courses/">Courses</a></li>
+<li><a href="../../publish/types/">Types</a></li>
+</ul>
+</li>
+<li id="nav-employees">Employees<ul><li><a href="../../publish/registrations/">Registrations</a></li></ul>
+</li>
+<li id="nav-system">System<ul>
+<li><a href="../../system/users/">Users</a></li>
+<li><a href="../../system/settings/">Settings</a></li>
+<li><a href="../../system/extensions/">Extensions</a></li>
+<li><a href="../../extension/aac/roles/">User Roles</a></li>
+</ul>
+</li>
+<li id="nav-blueprints" class="active">Blueprints<ul>
+<li><a href="../../blueprints/views/">Views</a></li>
+<li><a href="../../blueprints/sections/">Sections</a></li>
+<li><a href="../../blueprints/datasources/">Data Sources</a></li>
+<li><a href="../../blueprints/events/">Events</a></li>
+<li><a href="../../blueprints/utilities/">Utilities</a></li>
+</ul>
+</li>
+</ul>
+<h2>Sections<a title="Create a new section" class="create button" href="./new/">Create New</a>
+</h2>
+<table id="sections-list">
+<thead><tr>
+<th scope="col">Name</th>
+<th scope="col">Entries</th>
+<th scope="col">Navigation Group</th>
+<th scope="col">Sync Status</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><a class="content" href="../../blueprints/sections/edit/categories/">Categories</a></td>
+<td><a href="../../publish/categories/">5</a></td>
+<td>Training<input name="items[categories]" type="checkbox" value="on">
+</td>
+<td class="content inactive">Synced</td>
+</tr>
+<tr>
+<td><a class="content" href="../../blueprints/sections/edit/courses/">Courses</a></td>
+<td><a href="../../publish/courses/">5</a></td>
+<td>Training<input name="items[courses]" type="checkbox" value="on">
+</td>
+<td class="content inactive">Synced</td>
+</tr>
+<tr>
+<td><a class="content" href="../../blueprints/sections/edit/registrations/">Registrations</a></td>
+<td><a href="../../publish/registrations/">1</a></td>
+<td>Employees<input name="items[registrations]" type="checkbox" value="on">
+</td>
+<td class="content inactive">Synced</td>
+</tr>
+<tr>
+<td><a class="content" href="../../blueprints/sections/edit/types/">Types</a></td>
+<td><a href="../../publish/types/">3</a></td>
+<td>Training<input name="items[types]" type="checkbox" value="on">
+</td>
+<td class="content inactive">Synced</td>
+</tr>
+</tbody>
+</table>
+<div class="actions">
+<select name="with-selected"><option value="">With Selected...</option>
+<option value="delete" class="confirm">Delete</option>
+<option value="delete-entries" class="confirm">Delete Entries</option></select><input name="action[apply]" type="submit" value="Apply">
+</div>
+</form>
+</body>
+</html>

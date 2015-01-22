@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" rel="stylesheet" media="screen" href="../../../../assets/css/symphony.css">
+<link type="text/css" rel="stylesheet" media="screen" href="../../../../assets/css/symphony.duplicator.css">
+<link type="text/css" rel="stylesheet" media="screen" href="../../../../assets/css/symphony.layout.css">
+<script type="text/javascript" src="../../../../assets/js/jquery.js"></script><script type="text/javascript" src="../../../../assets/js/jquery-ui.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.collapsible.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.orderable.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.duplicator.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.layout.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.tags.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.selectable.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.js"></script><title>Symphony – Utilities – twitter-format-date.xsl</title>
+</head>
+<body><form action="../../../../blueprints/utilities/edit/twitter-format-date/">
+<h1><a href="http://home/sym3/beta/">Symphony CMS</a></h1>
+<ul id="session">
+<li><a href="../../../../system/users/edit/1/">John Smith</a></li>
+<li><a href="../../../../logout/">Logout</a></li>
+</ul>
+<ul id="nav">
+<li id="nav-training">Training<ul>
+<li><a href="../../../../publish/categories/">Categories</a></li>
+<li><a href="../../../../publish/courses/">Courses</a></li>
+<li><a href="../../../../publish/types/">Types</a></li>
+</ul>
+</li>
+<li id="nav-employees">Employees<ul><li><a href="../../../../publish/registrations/">Registrations</a></li></ul>
+</li>
+<li id="nav-system">System<ul>
+<li><a href="../../../../system/users/">Users</a></li>
+<li><a href="../../../../system/settings/">Settings</a></li>
+<li><a href="../../../../system/extensions/">Extensions</a></li>
+<li><a href="../../../../extension/aac/roles/">User Roles</a></li>
+</ul>
+</li>
+<li id="nav-blueprints" class="active">Blueprints<ul>
+<li><a href="../../../../blueprints/views/">Views</a></li>
+<li><a href="../../../../blueprints/sections/">Sections</a></li>
+<li><a href="../../../../blueprints/datasources/">Data Sources</a></li>
+<li><a href="../../../../blueprints/events/">Events</a></li>
+<li><a href="../../../../blueprints/utilities/">Utilities</a></li>
+</ul>
+</li>
+</ul>
+<h2>twitter-format-date.xsl</h2>
+<div class="columns type-ls" id="layout">
+<div class="column large"><fieldset>
+<h3>Essentials</h3>
+<label>Name<input name="fields[name]" type="text" value="twitter-format-date.xsl"></label><label>XSLT<textarea rows="30" cols="80" class="code" name="fields[template]">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"&gt;
+
+&lt;xsl:variable name="uppercase" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'" /&gt;
+&lt;xsl:variable name="lowercase" select="'abcdefghijklmnopqrstuvwxyz'" /&gt;
+&lt;!--
+
+Description:
+
+This is a date formatting utility for Twitter feeds, modified from the original date-time.xsl file. The named template "twitter-format-date" takes 2 parameters:
+
+1. date - [required] takes a Twitter formatted date (&lt;created_at&gt;)
+2. format - [optional] takes a format string.
+
+Format options:
+
+Y - year in 4 digits e.g. 1981, 1992, 2008
+y - year in 2 digits e.g. 81, 92, 08
+M - month as a full word e.g. January, March, September
+m - month in 3 letters e.g. Jan, Mar, Sep
+N - month in digits without leading zero
+n - month in digits with leading zero
+D - day with suffix and no leading zero e.g. 1st, 23rd
+d - day in digits with leading zero e.g. 01, 09, 12, 25
+x - day in digits with no leading zero e.g. 1, 9, 12, 25
+O - time in 24-hours e.g. 18:30
+o - time in 12-hours e.g. 6:30pm
+W - weekday as a full word e.g. Monday, Tuesday
+w - weekday in 3 letters e.g. Mon, Tue, Wed
+
+Examples:
+
+M       =&gt; January
+d M     =&gt; 21 September
+m D, y  =&gt; Sep 21st, 81
+n-d-y   =&gt; 09-21-81
+d/n/y   =&gt; 21/09/81
+d/n/y t =&gt; 21/09/81 6:30pm
+
+--&gt;
+
+&lt;xsl:template name="twitter-format-date"&gt;
+  &lt;xsl:param name="date" /&gt;
+  &lt;xsl:param name="format" select="'d M, Y'" /&gt;
+  
+  &lt;xsl:choose&gt;
+    &lt;xsl:when test="string-length($format) &amp;lt;= 10"&gt;
+      &lt;xsl:call-template name="twitter-date-controller"&gt;
+        &lt;xsl:with-param name="date" select="$date"/&gt;
+        &lt;xsl:with-param name="format" select="$format"/&gt;
+      &lt;/xsl:call-template&gt;
+    &lt;/xsl:when&gt;
+    &lt;xsl:otherwise&gt;
+      &lt;xsl:text&gt;Error: format parameter is not correctly set. You have: &lt;/xsl:text&gt;
+      &lt;xsl:value-of select="string-length($format)"/&gt;
+      &lt;xsl:text&gt;.&lt;/xsl:text&gt;
+    &lt;/xsl:otherwise&gt;
+  &lt;/xsl:choose&gt;
+&lt;/xsl:template&gt;
+
+&lt;xsl:template name="twitter-date-controller"&gt;
+  &lt;xsl:param name="date"/&gt;
+  &lt;xsl:param name="format"/&gt;
+  &lt;xsl:param name="letter" select="substring($format,1,1)"/&gt;
+  &lt;xsl:param name="tletter" select="translate($letter,'DMNYOW','dmnyow')"/&gt;
+
+  &lt;xsl:choose&gt;
+    &lt;xsl:when test="$tletter = 'y'"&gt;
+      &lt;xsl:call-template name="twitter-format-year"&gt;
+        &lt;xsl:with-param name="date" select="$date"/&gt;
+        &lt;xsl:with-param name="format" select="$letter"/&gt;
+      &lt;/xsl:call-template&gt;
+    &lt;/xsl:when&gt;
+    &lt;xsl:when test="$tletter = 'm'"&gt;
+      &lt;xsl:call-template name="twitter-format-month"&gt;
+        &lt;xsl:with-param name="date" select="$date"/&gt;
+        &lt;xsl:with-param name="format" select="$letter"/&gt;
+      &lt;/xsl:call-template&gt;
+    &lt;/xsl:when&gt;
+    &lt;xsl:when test="$tletter = 'n'"&gt;
+      &lt;xsl:call-template name="twitter-format-month"&gt;
+        &lt;xsl:with-param name="date" select="$date"/&gt;
+        &lt;xsl:with-param name="format" select="$letter"/&gt;
+      &lt;/xsl:call-template&gt;
+    &lt;/xsl:when&gt;
+    &lt;xsl:when test="$tletter = 'd'"&gt;
+      &lt;xsl:call-template name="twitter-format-day"&gt;
+        &lt;xsl:with-param name="date" select="$date"/&gt;
+        &lt;xsl:with-param name="format" select="$letter"/&gt;
+      &lt;/xsl:call-template&gt;
+    &lt;/xsl:when&gt;
+    &lt;xsl:when test="$tletter = 'x'"&gt;
+      &lt;xsl:call-template name="twitter-format-day"&gt;
+        &lt;xsl:with-param name="date" select="$date"/&gt;
+        &lt;xsl:with-param name="format" select="$letter"/&gt;
+      &lt;/xsl:call-template&gt;
+    &lt;/xsl:when&gt;
+    &lt;xsl:when test="$tletter = 'o'"&gt;
+      &lt;xsl:call-template name="twitter-format-time"&gt;
+        &lt;xsl:with-param name="date" select="$date"/&gt;
+        &lt;xsl:with-param name="format" select="$letter"/&gt;
+      &lt;/xsl:call-template&gt;
+    &lt;/xsl:when&gt;
+    &lt;xsl:when test="$tletter = 'w'"&gt;
+      &lt;xsl:call-template name="twitter-format-weekday"&gt;
+        &lt;xsl:with-param name="date" select="$date"/&gt;
+        &lt;xsl:with-param name="format" select="$letter"/&gt;
+      &lt;/xsl:call-template&gt;
+    &lt;/xsl:when&gt;
+    &lt;xsl:otherwise&gt;
+      &lt;xsl:value-of select="$letter"/&gt;
+    &lt;/xsl:otherwise&gt;
+  &lt;/xsl:choose&gt;
+
+  &lt;xsl:if test="$letter = not('')"&gt;
+    &lt;xsl:call-template name="twitter-date-controller"&gt;
+      &lt;xsl:with-param name="date" select="$date"/&gt;
+      &lt;xsl:with-param name="format" select="substring($format,2)"/&gt;
+    &lt;/xsl:call-template&gt;
+  &lt;/xsl:if&gt;
+
+&lt;/xsl:template&gt;
+
+&lt;xsl:template name="twitter-format-year"&gt;
+  &lt;xsl:param name="date"/&gt;
+  &lt;xsl:param name="year" select="substring($date,27)"/&gt;
+  &lt;xsl:param name="format" select="'y'"/&gt;
+  
+  &lt;xsl:choose&gt;
+    &lt;xsl:when test="$format = 'y'"&gt;
+      &lt;xsl:value-of select="substring($year,3)"/&gt;
+    &lt;/xsl:when&gt;
+    &lt;xsl:when test="$format = 'Y'"&gt;
+      &lt;xsl:value-of select="$year"/&gt;
+    &lt;/xsl:when&gt;
+  &lt;/xsl:choose&gt;
+&lt;/xsl:template&gt;
+
+&lt;xsl:template name="twitter-format-month"&gt;
+  &lt;xsl:param name="date"/&gt;
+  &lt;xsl:param name="month" select="translate(substring($date,5,3),$uppercase,$lowercase)"/&gt;
+  &lt;xsl:param name="format" select="'m'"/&gt;
+  &lt;xsl:param name="month-word"&gt;
+    &lt;xsl:choose&gt;
+      &lt;xsl:when test="$month = 'jan'"&gt;January&lt;/xsl:when&gt;
+      &lt;xsl:when test="$month = 'feb'"&gt;February&lt;/xsl:when&gt;
+      &lt;xsl:when test="$month = 'mar'"&gt;March&lt;/xsl:when&gt;
+      &lt;xsl:when test="$month = 'apr'"&gt;April&lt;/xsl:when&gt;
+      &lt;xsl:when test="$month = 'may'"&gt;May&lt;/xsl:when&gt;
+      &lt;xsl:when test="$month = 'jun'"&gt;June&lt;/xsl:when&gt;
+      &lt;xsl:when test="$month = 'jul'"&gt;July&lt;/xsl:when&gt;
+      &lt;xsl:when test="$month = 'aug'"&gt;August&lt;/xsl:when&gt;
+      &lt;xsl:when test="$month = 'sep'"&gt;September&lt;/xsl:when&gt;
+      &lt;xsl:when test="$month = 'oct'"&gt;October&lt;/xsl:when&gt;
+      &lt;xsl:when test="$month = 'nov'"&gt;November&lt;/xsl:when&gt;
+      &lt;xsl:when test="$month = 'dec'"&gt;December&lt;/xsl:when&gt;
+    &lt;/xsl:choose&gt;
+  &lt;/xsl:param&gt;
+
+  &lt;xsl:param name="month-digit"&gt;
+    &lt;xsl:choose&gt;
+      &lt;xsl:when test="$month = 'jan'"&gt;01&lt;/xsl:when&gt;
+      &lt;xsl:when test="$month = 'feb'"&gt;02&lt;/xsl:when&gt;
+      &lt;xsl:when test="$month = 'mar'"&gt;03&lt;/xsl:when&gt;
+      &lt;xsl:when test="$month = 'apr'"&gt;04&lt;/xsl:when&gt;
+      &lt;xsl:when test="$month = 'may'"&gt;05&lt;/xsl:when&gt;
+      &lt;xsl:when test="$month = 'jun'"&gt;06&lt;/xsl:when&gt;
+      &lt;xsl:when test="$month = 'jul'"&gt;07&lt;/xsl:when&gt;
+      &lt;xsl:when test="$month = 'aug'"&gt;08&lt;/xsl:when&gt;
+      &lt;xsl:when test="$month = 'sep'"&gt;09&lt;/xsl:when&gt;
+      &lt;xsl:when test="$month = 'oct'"&gt;10&lt;/xsl:when&gt;
+      &lt;xsl:when test="$month = 'nov'"&gt;11&lt;/xsl:when&gt;
+      &lt;xsl:when test="$month = 'dec'"&gt;12&lt;/xsl:when&gt;
+    &lt;/xsl:choose&gt;
+  &lt;/xsl:param&gt;
+  
+  &lt;xsl:choose&gt;
+    &lt;xsl:when test="$format = 'm'"&gt;
+      &lt;xsl:value-of select="substring($month-word, 1,3)"/&gt;
+    &lt;/xsl:when&gt;
+    &lt;xsl:when test="$format = 'M'"&gt;
+      &lt;xsl:value-of select="$month-word"/&gt;
+    &lt;/xsl:when&gt;
+    &lt;xsl:when test="$format = 'n'"&gt;
+      &lt;xsl:value-of select="format-number($month-digit, '00')"/&gt;
+    &lt;/xsl:when&gt;
+    &lt;xsl:when test="$format = 'N'"&gt;
+      &lt;xsl:value-of select="format-number($month-digit, '0')"/&gt;
+    &lt;/xsl:when&gt;
+  &lt;/xsl:choose&gt;
+  
+&lt;/xsl:template&gt;
+
+&lt;xsl:template name="twitter-format-day"&gt;
+  &lt;xsl:param name="date"/&gt;
+  &lt;xsl:param name="day" select="format-number(substring($date,9,2),'00')"/&gt;
+  &lt;xsl:param name="format" select="'d'"/&gt;
+  &lt;xsl:param name="suffix"&gt;
+    &lt;xsl:choose&gt;
+      &lt;xsl:when test="(substring($day,2) = 1) and not(substring($day,1,1) = 1)"&gt;st&lt;/xsl:when&gt;
+      &lt;xsl:when test="(substring($day,2) = 2) and not(substring($day,1,1) = 1)"&gt;nd&lt;/xsl:when&gt;
+      &lt;xsl:when test="(substring($day,2) = 3) and not(substring($day,1,1) = 1)"&gt;Rd&lt;/xsl:when&gt;
+      &lt;xsl:otherwise&gt;th&lt;/xsl:otherwise&gt;
+    &lt;/xsl:choose&gt;
+  &lt;/xsl:param&gt;
+
+  &lt;xsl:choose&gt;
+    &lt;xsl:when test="$format = 'd'"&gt;
+      &lt;xsl:value-of select="$day"/&gt;
+    &lt;/xsl:when&gt;
+    &lt;xsl:when test="$format = 'x'"&gt;
+      &lt;xsl:value-of select="format-number($day,'0')"/&gt;
+    &lt;/xsl:when&gt;
+    &lt;xsl:when test="$format = 'D'"&gt;
+      &lt;xsl:value-of select="format-number($day,'0')"/&gt;
+      &lt;sup&gt;&lt;xsl:value-of select="$suffix"/&gt;&lt;/sup&gt;
+    &lt;/xsl:when&gt;
+  &lt;/xsl:choose&gt;
+
+&lt;/xsl:template&gt;
+
+&lt;!--
+  Tue Feb 10 15:40:27 +0000 2009
+--&gt;
+
+&lt;xsl:template name="twitter-format-time"&gt;
+  &lt;xsl:param name="date"/&gt;
+  &lt;xsl:param name="time" select="substring($date,12,8)" /&gt;
+  &lt;xsl:param name="hour" select="substring-before($time, ':')"/&gt;
+  &lt;xsl:param name="minute" select="substring-after($time, ':')"/&gt;
+  &lt;xsl:param name="format" select="'O'"/&gt;
+  &lt;xsl:choose&gt;
+    &lt;xsl:when test="$format = 'O'"&gt;
+      &lt;xsl:value-of select="$time"/&gt;
+    &lt;/xsl:when&gt;
+    &lt;xsl:when test="$format = 'o'"&gt;
+      &lt;xsl:choose&gt;
+        &lt;xsl:when test="$hour mod 12 = 0"&gt;12&lt;/xsl:when&gt;
+        &lt;xsl:otherwise&gt;&lt;xsl:value-of select="($hour mod 12)"/&gt;&lt;/xsl:otherwise&gt;
+      &lt;/xsl:choose&gt;
+
+      &lt;xsl:value-of select="concat(':',$minute)"/&gt;
+
+      &lt;xsl:choose&gt;
+        &lt;xsl:when test="$hour &amp;lt; 12"&gt;am&lt;/xsl:when&gt;
+        &lt;xsl:otherwise&gt;pm&lt;/xsl:otherwise&gt;
+      &lt;/xsl:choose&gt;
+    &lt;/xsl:when&gt;
+  &lt;/xsl:choose&gt;
+&lt;/xsl:template&gt;
+
+&lt;xsl:template name="twitter-format-weekday"&gt;
+  &lt;xsl:param name="date" /&gt;
+  &lt;xsl:param name="weekday" select="translate(substring($date,1,3),$uppercase,$lowercase)" /&gt;
+  &lt;xsl:param name="format" select="'w'"/&gt;
+
+  &lt;xsl:param name="day-name"&gt;
+    &lt;xsl:choose&gt;
+      &lt;xsl:when test="$weekday = 'sun'"&gt;Sunday&lt;/xsl:when&gt;
+      &lt;xsl:when test="$weekday = 'mon'"&gt;Monday&lt;/xsl:when&gt;
+      &lt;xsl:when test="$weekday = 'tue'"&gt;Tuesday&lt;/xsl:when&gt;
+      &lt;xsl:when test="$weekday = 'wed'"&gt;Wednesday&lt;/xsl:when&gt;
+      &lt;xsl:when test="$weekday = 'thu'"&gt;Thursday&lt;/xsl:when&gt;
+      &lt;xsl:when test="$weekday = 'fri'"&gt;Friday&lt;/xsl:when&gt;
+      &lt;xsl:when test="$weekday = 'sat'"&gt;Satday&lt;/xsl:when&gt;
+    &lt;/xsl:choose&gt;
+  &lt;/xsl:param&gt;
+  
+  &lt;xsl:choose&gt;
+    &lt;xsl:when test="$format = 'W'"&gt;
+      &lt;xsl:value-of select="$day-name"/&gt;
+    &lt;/xsl:when&gt;
+    &lt;xsl:when test="$format = 'w'"&gt;
+      &lt;xsl:value-of select="substring($day-name,1,3)"/&gt;
+    &lt;/xsl:when&gt;
+  &lt;/xsl:choose&gt;
+&lt;/xsl:template&gt;
+
+&lt;/xsl:stylesheet&gt;</textarea></label>
+</fieldset></div>
+<div class="column small"><fieldset>
+<h3>Utilities</h3>
+<ul id="utilities">
+<li class="odd"><a href="../../../../blueprints/utilities/edit/date-time/">date-time.xsl</a></li>
+<li><a href="../../../../blueprints/utilities/edit/html-manipulation/">html-manipulation.xsl</a></li>
+<li class="odd"><a href="../../../../blueprints/utilities/edit/html-truncate-advanced/">html-truncate-advanced.xsl</a></li>
+<li><a href="../../../../blueprints/utilities/edit/html-truncate/">html-truncate.xsl</a></li>
+<li class="odd"><a href="../../../../blueprints/utilities/edit/html5/">html5.xsl</a></li>
+<li><a href="../../../../blueprints/utilities/edit/linkahashify/">linkahashify.xsl</a></li>
+<li class="odd"><a href="../../../../blueprints/utilities/edit/navigation/">navigation.xsl</a></li>
+<li><a href="../../../../blueprints/utilities/edit/page-title/">page-title.xsl</a></li>
+<li class="odd"><a href="../../../../blueprints/utilities/edit/pagination/">pagination.xsl</a></li>
+<li><a href="../../../../blueprints/utilities/edit/time-ago-friendly/">time-ago-friendly.xsl</a></li>
+<li class="odd"><a href="../../../../blueprints/utilities/edit/time-ago/">time-ago.xsl</a></li>
+<li><a href="../../../../blueprints/utilities/edit/twitter-format-date/">twitter-format-date.xsl</a></li>
+<li class="odd"><a href="../../../../blueprints/utilities/edit/twitter/">twitter.xsl</a></li>
+<li><a href="../../../../blueprints/utilities/edit/typography/">typography.xsl</a></li>
+</ul>
+</fieldset></div>
+</div>
+<div class="actions">
+<button accesskey="s" name="action[save]" type="submit"><span>Save Changes</span></button><button class="confirm delete" title="Delete this utility" name="action[delete]" type="submit"><span>Delete</span></button>
+</div>
+</form></body>
+</html>

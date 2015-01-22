@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" rel="stylesheet" media="screen" href="../../assets/css/symphony.css">
+<link type="text/css" rel="stylesheet" media="screen" href="../../assets/css/symphony.duplicator.css">
+<link type="text/css" rel="stylesheet" media="screen" href="../../assets/css/symphony.layout.css">
+<script type="text/javascript" src="../../assets/js/jquery.js"></script><script type="text/javascript" src="../../assets/js/jquery-ui.js"></script><script type="text/javascript" src="../../assets/js/symphony.collapsible.js"></script><script type="text/javascript" src="../../assets/js/symphony.orderable.js"></script><script type="text/javascript" src="../../assets/js/symphony.duplicator.js"></script><script type="text/javascript" src="../../assets/js/symphony.layout.js"></script><script type="text/javascript" src="../../assets/js/symphony.tags.js"></script><script type="text/javascript" src="../../assets/js/symphony.selectable.js"></script><script type="text/javascript" src="../../assets/js/symphony.js"></script><title>Symphony – Categories</title>
+</head>
+<body><form action="../../publish/categories" class="categories">
+<h1><a href="http://home/sym3/beta/">Symphony CMS</a></h1>
+<ul id="session">
+<li><a href="../../system/users/edit/1/">John Smith</a></li>
+<li><a href="../../logout/">Logout</a></li>
+</ul>
+<ul id="nav">
+<li id="nav-training" class="active">Training<ul>
+<li><a href="../../publish/categories/">Categories</a></li>
+<li><a href="../../publish/courses/">Courses</a></li>
+<li><a href="../../publish/types/">Types</a></li>
+</ul>
+</li>
+<li id="nav-employees">Employees<ul><li><a href="../../publish/registrations/">Registrations</a></li></ul>
+</li>
+<li id="nav-system">System<ul>
+<li><a href="../../system/users/">Users</a></li>
+<li><a href="../../system/settings/">Settings</a></li>
+<li><a href="../../system/extensions/">Extensions</a></li>
+<li><a href="../../extension/aac/roles/">User Roles</a></li>
+</ul>
+</li>
+<li id="nav-blueprints">Blueprints<ul>
+<li><a href="../../blueprints/views/">Views</a></li>
+<li><a href="../../blueprints/sections/">Sections</a></li>
+<li><a href="../../blueprints/datasources/">Data Sources</a></li>
+<li><a href="../../blueprints/events/">Events</a></li>
+<li><a href="../../blueprints/utilities/">Utilities</a></li>
+</ul>
+</li>
+</ul>
+<h2>Categories<a title="Create a new entry" class="create button" href="../../publish/categories/new/">Create New</a>
+</h2>
+<table>
+<thead><tr>
+<th scope="col"><a title="Sort by ascending category" href="../../publish/categories?pg=1&amp;sort=category&amp;order=asc">Category</a></th>
+<th scope="col"><a title="Sort by ascending description" href="../../publish/categories?pg=1&amp;sort=description&amp;order=asc">Description</a></th>
+<th scope="col"><a title="Sort by ascending type" href="../../publish/categories?pg=1&amp;sort=type&amp;order=asc">Type</a></th>
+</tr></thead>
+<tbody>
+<tr>
+<td><a id="5" class="content" href="../../publish/categories/edit/5/">Technical and Operator Training</a></td>
+<td class="inactive">None</td>
+<td>On Site<input name="items[5]" type="checkbox">
+</td>
+</tr>
+<tr>
+<td><a id="6" class="content" href="../../publish/categories/edit/6/">Health and Safety Training</a></td>
+<td class="inactive">None</td>
+<td>Classroom<input name="items[6]" type="checkbox">
+</td>
+</tr>
+<tr>
+<td><a id="7" class="content" href="../../publish/categories/edit/7/">Personal Development Courses</a></td>
+<td class="inactive">None</td>
+<td>Classroom<input name="items[7]" type="checkbox">
+</td>
+</tr>
+<tr>
+<td><a id="8" class="content" href="../../publish/categories/edit/8/">Computer Based Courses</a></td>
+<td class="inactive">None</td>
+<td>Classroom<input name="items[8]" type="checkbox">
+</td>
+</tr>
+<tr>
+<td><a id="9" class="content" href="../../publish/categories/edit/9/">Online Courses</a></td>
+<td class="inactive">None</td>
+<td>Online<input name="items[9]" type="checkbox">
+</td>
+</tr>
+</tbody>
+</table>
+<div class="actions">
+<select name="with-selected"><option value="">With Selected...</option>
+<option value="delete">Delete</option>
+<optgroup label="Set ">
+<option value="toggle::type::Classroom">Classroom</option>
+<option value="toggle::type::On Site">On Site</option>
+<option value="toggle::type::Online">Online</option>
+</optgroup></select><input name="action[apply]" type="submit" value="Apply">
+</div>
+</form></body>
+</html>

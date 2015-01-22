@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" rel="stylesheet" media="screen" href="http://home/sym3/beta/symphony/assets/css/symphony.css">
+<link type="text/css" rel="stylesheet" media="screen" href="http://home/sym3/beta/symphony/assets/css/symphony.duplicator.css">
+<link type="text/css" rel="stylesheet" media="screen" href="http://home/sym3/beta/symphony/assets/css/symphony.layout.css">
+<script type="text/javascript" src="http://home/sym3/beta/symphony/assets/js/jquery.js"></script><script type="text/javascript" src="http://home/sym3/beta/symphony/assets/js/jquery-ui.js"></script><script type="text/javascript" src="http://home/sym3/beta/symphony/assets/js/symphony.collapsible.js"></script><script type="text/javascript" src="http://home/sym3/beta/symphony/assets/js/symphony.orderable.js"></script><script type="text/javascript" src="http://home/sym3/beta/symphony/assets/js/symphony.duplicator.js"></script><script type="text/javascript" src="http://home/sym3/beta/symphony/assets/js/symphony.layout.js"></script><script type="text/javascript" src="http://home/sym3/beta/symphony/assets/js/symphony.tags.js"></script><script type="text/javascript" src="http://home/sym3/beta/symphony/assets/js/symphony.selectable.js"></script><script type="text/javascript" src="http://home/sym3/beta/symphony/assets/js/symphony.js"></script><title>Symphony – Utilities – pagination.xsl</title>
+</head>
+<body><form action="http://home/sym3/beta/symphony/blueprints/utilities/edit/pagination/">
+<h1><a href="http://home/sym3/beta/">Symphony CMS</a></h1>
+<ul id="session">
+<li><a href="http://home/sym3/beta/symphony/system/users/edit/1/">John Smith</a></li>
+<li><a href="http://home/sym3/beta/symphony/logout/">Logout</a></li>
+</ul>
+<ul id="nav">
+<li id="nav-training">Training<ul>
+<li><a href="http://home/sym3/beta/symphony/publish/categories/">Categories</a></li>
+<li><a href="http://home/sym3/beta/symphony/publish/courses/">Courses</a></li>
+<li><a href="http://home/sym3/beta/symphony/publish/types/">Types</a></li>
+</ul>
+</li>
+<li id="nav-employees">Employees<ul><li><a href="http://home/sym3/beta/symphony/publish/registrations/">Registrations</a></li></ul>
+</li>
+<li id="nav-system">System<ul>
+<li><a href="http://home/sym3/beta/symphony/system/users/">Users</a></li>
+<li><a href="http://home/sym3/beta/symphony/system/settings/">Settings</a></li>
+<li><a href="http://home/sym3/beta/symphony/system/extensions/">Extensions</a></li>
+<li><a href="http://home/sym3/beta/symphony/extension/aac/roles/">User Roles</a></li>
+</ul>
+</li>
+<li id="nav-blueprints" class="active">Blueprints<ul>
+<li><a href="http://home/sym3/beta/symphony/blueprints/views/">Views</a></li>
+<li><a href="http://home/sym3/beta/symphony/blueprints/sections/">Sections</a></li>
+<li><a href="http://home/sym3/beta/symphony/blueprints/datasources/">Data Sources</a></li>
+<li><a href="http://home/sym3/beta/symphony/blueprints/events/">Events</a></li>
+<li><a href="http://home/sym3/beta/symphony/blueprints/utilities/">Utilities</a></li>
+</ul>
+</li>
+</ul>
+<h2>pagination.xsl</h2>
+<div class="columns type-ls" id="layout">
+<div class="column large"><fieldset>
+<h3>Essentials</h3>
+<label>Name<input name="fields[name]" type="text" value="pagination.xsl"></label><label>XSLT<textarea rows="30" cols="80" class="code" name="fields[template]">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"&gt;
+
+&lt;xsl:template name="pagination"&gt;
+	&lt;xsl:param name="pagination-element" /&gt;
+	&lt;xsl:param name="display-number" /&gt;
+	&lt;xsl:param name="url" /&gt;
+		
+	&lt;xsl:variable name="display-number"&gt;
+		&lt;xsl:choose&gt;
+			&lt;xsl:when test="$display-number &amp;lt; 3"&gt;3&lt;/xsl:when&gt;
+			&lt;xsl:when test="$display-number &amp;lt; $pagination-element/@total-pages"&gt;
+				&lt;xsl:value-of select="$display-number"/&gt;
+			&lt;/xsl:when&gt;
+			&lt;xsl:otherwise&gt;
+				&lt;xsl:value-of select="$pagination-element/@total-pages - 1"/&gt;
+			&lt;/xsl:otherwise&gt;
+		&lt;/xsl:choose&gt;
+	&lt;/xsl:variable&gt;
+	
+	&lt;xsl:if test="$pagination-element/@total-pages &amp;gt; 1"&gt;
+	
+		&lt;xsl:variable name="current-page"&gt;
+			&lt;xsl:choose&gt;
+				&lt;xsl:when test="$pagination-element/@current-page = ''"&gt;1&lt;/xsl:when&gt;
+				&lt;xsl:otherwise&gt;&lt;xsl:value-of select="$pagination-element/@current-page"/&gt;&lt;/xsl:otherwise&gt;
+			&lt;/xsl:choose&gt;
+		&lt;/xsl:variable&gt;
+	
+		&lt;xsl:variable name="previous-page"&gt;
+			&lt;xsl:choose&gt;
+				&lt;xsl:when test="$current-page = 1"&gt;&lt;xsl:value-of select="$pagination-element/@total-pages" /&gt;&lt;/xsl:when&gt;
+				&lt;xsl:otherwise&gt;&lt;xsl:value-of select="$current-page - 1" /&gt;&lt;/xsl:otherwise&gt;
+			&lt;/xsl:choose&gt;
+		&lt;/xsl:variable&gt;
+		
+		&lt;xsl:variable name="next-page"&gt;
+			&lt;xsl:choose&gt;
+				&lt;xsl:when test="$current-page = $pagination-element/@total-pages"&gt;1&lt;/xsl:when&gt;
+				&lt;xsl:otherwise&gt;&lt;xsl:value-of select="$current-page + 1" /&gt;&lt;/xsl:otherwise&gt;
+			&lt;/xsl:choose&gt;
+		&lt;/xsl:variable&gt;
+		
+		&lt;xsl:variable name="last-section"&gt;
+			&lt;xsl:value-of select="$pagination-element/@total-pages - $display-number" /&gt;
+		&lt;/xsl:variable&gt;
+		
+		&lt;xsl:variable name="first-page"&gt;
+			&lt;xsl:choose&gt;
+				&lt;xsl:when test="$current-page &amp;gt;= 1 and $current-page &amp;lt; $display-number"&gt;
+					&lt;xsl:text&gt;1&lt;/xsl:text&gt;
+				&lt;/xsl:when&gt;
+				&lt;xsl:when test="$current-page &amp;gt; $last-section and $current-page &amp;lt;= $pagination-element/@total-pages"&gt;
+					&lt;xsl:value-of select="$last-section" /&gt;
+				&lt;/xsl:when&gt;
+				&lt;xsl:otherwise&gt;
+					&lt;xsl:value-of select="$current-page - (floor($display-number div 2))" /&gt;
+				&lt;/xsl:otherwise&gt;
+			&lt;/xsl:choose&gt;
+		&lt;/xsl:variable&gt;
+
+		&lt;xsl:variable name="last-page"&gt;
+			&lt;xsl:choose&gt;
+				&lt;xsl:when test="$current-page &amp;gt; $last-section and $current-page &amp;lt;= $pagination-element/@total-pages"&gt;
+					&lt;xsl:value-of select="$first-page + $display-number"/&gt;
+				&lt;/xsl:when&gt;
+				&lt;xsl:otherwise&gt;
+					&lt;xsl:value-of select="$first-page + $display-number - 1"/&gt;
+				&lt;/xsl:otherwise&gt;
+			&lt;/xsl:choose&gt;
+		&lt;/xsl:variable&gt;
+		
+		&lt;ul class="pagination"&gt;
+			&lt;li&gt;
+				&lt;xsl:if test="$next-page = 2"&gt;
+					&lt;xsl:attribute name="class"&gt;disabled&lt;/xsl:attribute&gt;
+				&lt;/xsl:if&gt;
+				&lt;a class="pagination-previous"&gt;
+					&lt;xsl:attribute name="href"&gt;
+						&lt;xsl:call-template name="string-replace"&gt;
+							&lt;xsl:with-param name="string" select="$url" /&gt;
+							&lt;xsl:with-param name="search" select="'$'" /&gt;
+							&lt;xsl:with-param name="replace" select="string($previous-page)" /&gt;
+						&lt;/xsl:call-template&gt;
+					&lt;/xsl:attribute&gt;
+					&lt;xsl:text&gt;&amp;#171; Previous&lt;/xsl:text&gt;
+				&lt;/a&gt;
+			&lt;/li&gt;
+			
+			&lt;xsl:call-template name="pagination-numbers"&gt;
+				&lt;xsl:with-param name="first-page" select="$first-page"/&gt;
+				&lt;xsl:with-param name="last-page" select="$last-page"/&gt;
+				&lt;xsl:with-param name="current-page" select="$current-page"/&gt;
+				&lt;xsl:with-param name="iterations" select="$last-page - $first-page"/&gt;
+				&lt;xsl:with-param name="total-pages" select="$pagination-element/@total-pages"/&gt;
+				&lt;xsl:with-param name="url" select="$url"/&gt;
+			&lt;/xsl:call-template&gt;
+			
+			&lt;li&gt;
+				&lt;xsl:if test="$next-page = 1"&gt;
+					&lt;xsl:attribute name="class"&gt;disabled&lt;/xsl:attribute&gt;
+				&lt;/xsl:if&gt;
+				&lt;a class="pagination-next"&gt;
+					&lt;xsl:attribute name="href"&gt;
+						&lt;xsl:call-template name="string-replace"&gt;
+							&lt;xsl:with-param name="string" select="$url" /&gt;
+							&lt;xsl:with-param name="search" select="'$'" /&gt;
+							&lt;xsl:with-param name="replace" select="string($next-page)" /&gt;
+						&lt;/xsl:call-template&gt;
+					&lt;/xsl:attribute&gt;
+					&lt;xsl:text&gt;Next &amp;#187;&lt;/xsl:text&gt;
+				&lt;/a&gt;
+			&lt;/li&gt;
+		&lt;/ul&gt;
+	
+	&lt;/xsl:if&gt;
+	
+&lt;/xsl:template&gt;
+
+&lt;xsl:template name="pagination-numbers"&gt;
+	&lt;xsl:param name="first-page" select="$first-page"/&gt;
+	&lt;xsl:param name="last-page" select="$last-page"/&gt;
+	&lt;xsl:param name="current-page" select="$current-page"/&gt;
+	&lt;xsl:param name="iterations" select="$iterations"/&gt;
+	&lt;xsl:param name="total-pages" select="$total-pages"/&gt;
+	&lt;xsl:param name="url" select="$url"/&gt;
+	&lt;xsl:param name="count" select="$iterations"/&gt;
+
+	&lt;xsl:if test="$count &amp;gt;= 0"&gt;
+		
+		&lt;xsl:variable name="this-page" select="$first-page + ($iterations - $count)"/&gt;
+		
+		&lt;xsl:if test="$this-page = $first-page and $first-page &amp;gt; 1"&gt;
+			&lt;li&gt;				 
+				&lt;a class="page"&gt;
+					&lt;xsl:attribute name="href"&gt;
+						&lt;xsl:call-template name="string-replace"&gt;
+							&lt;xsl:with-param name="string" select="$url" /&gt;
+							&lt;xsl:with-param name="search" select="'$'" /&gt;
+							&lt;xsl:with-param name="replace" select="'1'" /&gt;
+						&lt;/xsl:call-template&gt;
+					&lt;/xsl:attribute&gt;
+					&lt;xsl:text&gt;1&lt;/xsl:text&gt;
+				&lt;/a&gt;
+				&lt;xsl:if test="$this-page != 2"&gt;
+					&lt;span&gt;...&lt;/span&gt;
+				&lt;/xsl:if&gt;		
+			&lt;/li&gt;		
+		&lt;/xsl:if&gt;
+		
+		&lt;li&gt;
+			&lt;xsl:if test="$this-page = $current-page"&gt;
+				&lt;xsl:attribute name="class"&gt;selected&lt;/xsl:attribute&gt;
+			&lt;/xsl:if&gt;
+			&lt;a class="page"&gt;
+				&lt;xsl:attribute name="href"&gt;
+					&lt;xsl:call-template name="string-replace"&gt;
+						&lt;xsl:with-param name="string" select="$url"/&gt;
+						&lt;xsl:with-param name="search" select="'$'"/&gt;
+						&lt;xsl:with-param name="replace" select="string($this-page)"/&gt;
+					&lt;/xsl:call-template&gt;
+				&lt;/xsl:attribute&gt;
+				&lt;xsl:value-of select="$this-page"/&gt;
+			&lt;/a&gt;
+		&lt;/li&gt;
+		
+		&lt;xsl:if test="$this-page = $last-page and $last-page &amp;lt; $total-pages"&gt;
+			&lt;li&gt;
+				&lt;xsl:if test="$this-page != ($total-pages - 1)"&gt;
+					&lt;span&gt;...&lt;/span&gt;
+				&lt;/xsl:if&gt; 
+				&lt;a class="page"&gt;
+					&lt;xsl:attribute name="href"&gt;
+						&lt;xsl:call-template name="string-replace"&gt;
+							&lt;xsl:with-param name="string" select="$url" /&gt;
+							&lt;xsl:with-param name="search" select="'$'" /&gt;
+							&lt;xsl:with-param name="replace" select="string($total-pages)" /&gt;
+						&lt;/xsl:call-template&gt;
+					&lt;/xsl:attribute&gt;
+					&lt;xsl:value-of select="$total-pages" /&gt;
+				&lt;/a&gt;
+			&lt;/li&gt;
+		&lt;/xsl:if&gt;
+		
+		&lt;xsl:call-template name="pagination-numbers"&gt;
+			&lt;xsl:with-param name="count" select="$count - 1"/&gt;
+			&lt;xsl:with-param name="first-page" select="$first-page"/&gt;
+			&lt;xsl:with-param name="last-page" select="$last-page"/&gt;
+			&lt;xsl:with-param name="current-page" select="$current-page"/&gt;
+			&lt;xsl:with-param name="total-pages" select="$total-pages"/&gt;
+			&lt;xsl:with-param name="url" select="$url"/&gt;
+			&lt;xsl:with-param name="iterations" select="$iterations"/&gt;
+		&lt;/xsl:call-template&gt;
+		
+	&lt;/xsl:if&gt;
+	
+&lt;/xsl:template&gt;
+
+&lt;xsl:template name="string-replace"&gt;
+    &lt;xsl:param name="string"/&gt;
+    &lt;xsl:param name="search"/&gt;
+    &lt;xsl:param name="replace"/&gt;
+
+    &lt;xsl:choose&gt;
+         &lt;xsl:when test="contains($string, $search)"&gt;
+            &lt;xsl:variable name="before" select="substring-before($string, $search)"/&gt;
+            &lt;xsl:variable name="after" select="substring-after($string, $search)"/&gt;
+
+            &lt;xsl:value-of select="$before"/&gt;
+            &lt;xsl:value-of select="$replace"/&gt;
+
+            &lt;xsl:call-template name="string-replace"&gt;
+                 &lt;xsl:with-param name="string" select="$after"/&gt;
+                 &lt;xsl:with-param name="search" select="$search"/&gt;
+                 &lt;xsl:with-param name="replace" select="$replace"/&gt;
+            &lt;/xsl:call-template&gt;
+        &lt;/xsl:when&gt;
+
+        &lt;xsl:otherwise&gt;
+            &lt;xsl:value-of select="$string"/&gt;
+        &lt;/xsl:otherwise&gt;
+    &lt;/xsl:choose&gt;
+&lt;/xsl:template&gt;
+
+&lt;/xsl:stylesheet&gt;</textarea></label>
+</fieldset></div>
+<div class="column small"><fieldset>
+<h3>Utilities</h3>
+<ul id="utilities">
+<li class="odd"><a href="http://home/sym3/beta/symphony/blueprints/utilities/edit/date-time/">date-time.xsl</a></li>
+<li><a href="http://home/sym3/beta/symphony/blueprints/utilities/edit/html-manipulation/">html-manipulation.xsl</a></li>
+<li class="odd"><a href="http://home/sym3/beta/symphony/blueprints/utilities/edit/html-truncate-advanced/">html-truncate-advanced.xsl</a></li>
+<li><a href="http://home/sym3/beta/symphony/blueprints/utilities/edit/html-truncate/">html-truncate.xsl</a></li>
+<li class="odd"><a href="http://home/sym3/beta/symphony/blueprints/utilities/edit/html5/">html5.xsl</a></li>
+<li><a href="http://home/sym3/beta/symphony/blueprints/utilities/edit/linkahashify/">linkahashify.xsl</a></li>
+<li class="odd"><a href="http://home/sym3/beta/symphony/blueprints/utilities/edit/navigation/">navigation.xsl</a></li>
+<li><a href="http://home/sym3/beta/symphony/blueprints/utilities/edit/page-title/">page-title.xsl</a></li>
+<li class="odd"><a href="http://home/sym3/beta/symphony/blueprints/utilities/edit/pagination/">pagination.xsl</a></li>
+<li><a href="http://home/sym3/beta/symphony/blueprints/utilities/edit/time-ago-friendly/">time-ago-friendly.xsl</a></li>
+<li class="odd"><a href="http://home/sym3/beta/symphony/blueprints/utilities/edit/time-ago/">time-ago.xsl</a></li>
+<li><a href="http://home/sym3/beta/symphony/blueprints/utilities/edit/twitter-format-date/">twitter-format-date.xsl</a></li>
+<li class="odd"><a href="http://home/sym3/beta/symphony/blueprints/utilities/edit/twitter/">twitter.xsl</a></li>
+<li><a href="http://home/sym3/beta/symphony/blueprints/utilities/edit/typography/">typography.xsl</a></li>
+</ul>
+</fieldset></div>
+</div>
+<div class="actions">
+<button accesskey="s" name="action[save]" type="submit"><span>Save Changes</span></button><button class="confirm delete" title="Delete this utility" name="action[delete]" type="submit"><span>Delete</span></button>
+</div>
+</form></body>
+</html>

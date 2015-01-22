@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" rel="stylesheet" media="screen" href="../../../../assets/css/symphony.css">
+<link type="text/css" rel="stylesheet" media="screen" href="../../../../assets/css/symphony.duplicator.css">
+<link type="text/css" rel="stylesheet" media="screen" href="../../../../assets/css/symphony.layout.css">
+<script type="text/javascript" src="../../../../assets/js/jquery.js"></script><script type="text/javascript" src="../../../../assets/js/jquery-ui.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.collapsible.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.orderable.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.duplicator.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.layout.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.tags.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.selectable.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.js"></script><title>Symphony – Utilities – linkahashify.xsl</title>
+</head>
+<body><form action="../../../../blueprints/utilities/edit/linkahashify/">
+<h1><a href="http://home/sym3/beta/">Symphony CMS</a></h1>
+<ul id="session">
+<li><a href="../../../../system/users/edit/1/">John Smith</a></li>
+<li><a href="../../../../logout/">Logout</a></li>
+</ul>
+<ul id="nav">
+<li id="nav-training">Training<ul>
+<li><a href="../../../../publish/categories/">Categories</a></li>
+<li><a href="../../../../publish/courses/">Courses</a></li>
+<li><a href="../../../../publish/types/">Types</a></li>
+</ul>
+</li>
+<li id="nav-employees">Employees<ul><li><a href="../../../../publish/registrations/">Registrations</a></li></ul>
+</li>
+<li id="nav-system">System<ul>
+<li><a href="../../../../system/users/">Users</a></li>
+<li><a href="../../../../system/settings/">Settings</a></li>
+<li><a href="../../../../system/extensions/">Extensions</a></li>
+<li><a href="../../../../extension/aac/roles/">User Roles</a></li>
+</ul>
+</li>
+<li id="nav-blueprints" class="active">Blueprints<ul>
+<li><a href="../../../../blueprints/views/">Views</a></li>
+<li><a href="../../../../blueprints/sections/">Sections</a></li>
+<li><a href="../../../../blueprints/datasources/">Data Sources</a></li>
+<li><a href="../../../../blueprints/events/">Events</a></li>
+<li><a href="../../../../blueprints/utilities/">Utilities</a></li>
+</ul>
+</li>
+</ul>
+<h2>linkahashify.xsl</h2>
+<div class="columns type-ls" id="layout">
+<div class="column large"><fieldset>
+<h3>Essentials</h3>
+<label>Name<input name="fields[name]" type="text" value="linkahashify.xsl"></label><label>XSLT<textarea rows="30" cols="80" class="code" name="fields[template]">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;xsl:stylesheet version="1.0"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+	xmlns:str="http://exslt.org/strings"
+	exclude-element-prefixes="str"&gt;
+
+&lt;!--
+Name: Twita@talinkahashifyer (`linkahashify`)
+Description: An XSLT port of Dustin Diaz's Twita@talinkahashifyer JavaScript function to format a tweet a la Twitter.com
+Version: 0.1
+Author: Nick Dunn &lt;http://github.com/nickdunn&gt;
+URL: http://github.com/nickdunn/form-controls/tree/master
+Parameters:
+* `tweet` (string): A single tweet
+
+Original concept and JavaScript Copyright (c) 2009 Dustin Diaz:
+&lt;http://www.dustindiaz.com&gt;
+&lt;http://www.dustindiaz.com/basement/ify.html&gt;
+--&gt;
+&lt;xsl:template name="linkahashify"&gt;
+	&lt;xsl:param name="tweet"/&gt;
+
+	&lt;!-- split tweet into words --&gt;
+	&lt;xsl:for-each select="str:tokenize($tweet,' ')"&gt;
+	
+		&lt;xsl:variable name="word" select="."/&gt;
+	
+		&lt;!-- how many characters from the start of the string to trim to, removes trailing characters --&gt;
+		&lt;xsl:variable name="trim"&gt;
+			&lt;xsl:call-template name="linkahashify-trim"&gt;
+				&lt;xsl:with-param name="string" select="$word"/&gt;
+			&lt;/xsl:call-template&gt;
+		&lt;/xsl:variable&gt;
+	
+		&lt;xsl:choose&gt;
+		
+			&lt;!-- @username --&gt;
+			&lt;xsl:when test="starts-with($word,'@')"&gt;
+				&lt;xsl:text&gt;@&lt;/xsl:text&gt;
+				&lt;!-- the link and text is the word minus the @ and any trailing characters --&gt;
+				&lt;a href="http://twitter.com/{substring-after(substring($word,1,$trim),'@')}"&gt;
+					&lt;xsl:value-of select="substring-after(substring($word,1,$trim),'@')"/&gt;
+				&lt;/a&gt;
+				&lt;!-- add remaining trailing characters --&gt;
+				&lt;xsl:value-of select="substring($word,($trim+1),100)"/&gt;
+			&lt;/xsl:when&gt;
+		
+			&lt;!-- #hash --&gt;
+			&lt;xsl:when test="starts-with($word,'#')"&gt;
+				&lt;xsl:text&gt;#&lt;/xsl:text&gt;
+				&lt;!-- the link and text is the word minus the @ and any trailing characters --&gt;
+				&lt;a href="http://search.twitter.com/search?q=#{substring-after(substring($word,1,$trim),'#')}"&gt;
+					&lt;xsl:value-of select="substring-after(substring($word,1,$trim),'#')"/&gt;
+				&lt;/a&gt;
+				&lt;!-- add remaining trailing characters --&gt;
+				&lt;xsl:value-of select="substring($word,($trim+1),100)"/&gt;				
+			&lt;/xsl:when&gt;
+		
+			&lt;!-- links --&gt;
+			&lt;xsl:when test="starts-with($word,'http')"&gt;	
+				&lt;!-- URL with trailing characters removed --&gt;			
+				&lt;xsl:variable name="url"&gt;
+					&lt;xsl:value-of select="substring($word,1,$trim)"/&gt;
+				&lt;/xsl:variable&gt;
+			
+				&lt;a href="{$url}"&gt;
+					&lt;!-- truncate when URL is longer than 25 characters --&gt;
+					&lt;xsl:choose&gt;
+						&lt;xsl:when test="string-length($url) &amp;gt; 25"&gt;
+							&lt;xsl:value-of select="substring($url,0,24)"/&gt;
+							&lt;xsl:text&gt;&amp;#8230;&lt;/xsl:text&gt;
+						&lt;/xsl:when&gt;
+						&lt;xsl:otherwise&gt;
+							&lt;xsl:value-of select="$url"/&gt;
+						&lt;/xsl:otherwise&gt;
+					&lt;/xsl:choose&gt;
+				&lt;/a&gt;
+				&lt;!-- add remaining trailing characters --&gt;
+				&lt;xsl:value-of select="substring($word,($trim+1),100)"/&gt;
+			
+			&lt;/xsl:when&gt;
+		
+			&lt;xsl:otherwise&gt;
+				&lt;xsl:value-of select="$word"/&gt;
+			&lt;/xsl:otherwise&gt;
+		
+		&lt;/xsl:choose&gt;
+	
+		&lt;!-- rebuild spaces between all but the last words --&gt;
+		&lt;xsl:if test="position() != last()"&gt;
+			&lt;xsl:text&gt; &lt;/xsl:text&gt;
+		&lt;/xsl:if&gt;
+	
+	&lt;/xsl:for-each&gt;
+
+&lt;/xsl:template&gt;
+
+&lt;!--
+Name: linkahashify-trim
+Returns: an integer from which the original string should be trimmed using `substring()`
+Description:
+A recursive template to recurse from the end to the beginning of a string until the first non-"trailing" character is found.
+A non-trailing character is defined as a character that appears on the end of a string/URL but does not form part of that string, e.g.
+	string: Oh, @nickdunn...
+	result: Oh, @nickdunn
+
+	string: Visit http://nick-dunn.co.uk/#win!
+	result: Visit http://nick-dunn.co.uk/#win
+--&gt;
+&lt;xsl:template name="linkahashify-trim"&gt;
+	&lt;xsl:param name="string"/&gt;
+	&lt;xsl:param name="start" select="string-length($string)"/&gt;
+	&lt;xsl:param name="iterations" select="start"/&gt;
+	&lt;xsl:param name="count" select="$start"/&gt;
+
+	&lt;!-- if we haven't reached the beginning of the string yet --&gt;
+	&lt;xsl:if test="$count &gt; 0"&gt;		
+		&lt;xsl:choose&gt;
+			&lt;!-- if current character isn't considered a trailing character, we've reached the end of trailing characters,
+				so we will use this position to trim to --&gt;
+			&lt;xsl:when test="translate(substring($string,$count,1),'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890#/','')=''"&gt;
+				&lt;xsl:value-of select="$count"/&gt;
+			&lt;/xsl:when&gt;
+			&lt;xsl:otherwise&gt;
+				&lt;!-- otherwise we keep rolling --&gt;
+				&lt;xsl:call-template name="linkahashify-trim"&gt;
+					&lt;xsl:with-param name="string" select="$string"/&gt;
+					&lt;xsl:with-param name="count" select="$count - 1"/&gt;
+					&lt;xsl:with-param name="start" select="$start"/&gt;
+					&lt;xsl:with-param name="iterations" select="$iterations"/&gt;
+				&lt;/xsl:call-template&gt;
+			&lt;/xsl:otherwise&gt;
+		&lt;/xsl:choose&gt;		
+	&lt;/xsl:if&gt;
+
+&lt;/xsl:template&gt;
+
+
+&lt;/xsl:stylesheet&gt;</textarea></label>
+</fieldset></div>
+<div class="column small"><fieldset>
+<h3>Utilities</h3>
+<ul id="utilities">
+<li class="odd"><a href="../../../../blueprints/utilities/edit/date-time/">date-time.xsl</a></li>
+<li><a href="../../../../blueprints/utilities/edit/html-manipulation/">html-manipulation.xsl</a></li>
+<li class="odd"><a href="../../../../blueprints/utilities/edit/html-truncate-advanced/">html-truncate-advanced.xsl</a></li>
+<li><a href="../../../../blueprints/utilities/edit/html-truncate/">html-truncate.xsl</a></li>
+<li class="odd"><a href="../../../../blueprints/utilities/edit/html5/">html5.xsl</a></li>
+<li><a href="../../../../blueprints/utilities/edit/linkahashify/">linkahashify.xsl</a></li>
+<li class="odd"><a href="../../../../blueprints/utilities/edit/navigation/">navigation.xsl</a></li>
+<li><a href="../../../../blueprints/utilities/edit/page-title/">page-title.xsl</a></li>
+<li class="odd"><a href="../../../../blueprints/utilities/edit/pagination/">pagination.xsl</a></li>
+<li><a href="../../../../blueprints/utilities/edit/time-ago-friendly/">time-ago-friendly.xsl</a></li>
+<li class="odd"><a href="../../../../blueprints/utilities/edit/time-ago/">time-ago.xsl</a></li>
+<li><a href="../../../../blueprints/utilities/edit/twitter-format-date/">twitter-format-date.xsl</a></li>
+<li class="odd"><a href="../../../../blueprints/utilities/edit/twitter/">twitter.xsl</a></li>
+<li><a href="../../../../blueprints/utilities/edit/typography/">typography.xsl</a></li>
+</ul>
+</fieldset></div>
+</div>
+<div class="actions">
+<button accesskey="s" name="action[save]" type="submit"><span>Save Changes</span></button><button class="confirm delete" title="Delete this utility" name="action[delete]" type="submit"><span>Delete</span></button>
+</div>
+</form></body>
+</html>

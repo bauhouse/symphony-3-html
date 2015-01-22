@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" rel="stylesheet" media="screen" href="../../../assets/css/symphony.css">
+<link type="text/css" rel="stylesheet" media="screen" href="../../../assets/css/symphony.duplicator.css">
+<link type="text/css" rel="stylesheet" media="screen" href="../../../assets/css/symphony.layout.css">
+<script type="text/javascript" src="../../../assets/js/jquery.js"></script><script type="text/javascript" src="../../../assets/js/jquery-ui.js"></script><script type="text/javascript" src="../../../assets/js/symphony.collapsible.js"></script><script type="text/javascript" src="../../../assets/js/symphony.orderable.js"></script><script type="text/javascript" src="../../../assets/js/symphony.duplicator.js"></script><script type="text/javascript" src="../../../assets/js/symphony.layout.js"></script><script type="text/javascript" src="../../../assets/js/symphony.tags.js"></script><script type="text/javascript" src="../../../assets/js/symphony.selectable.js"></script><script type="text/javascript" src="../../../assets/js/symphony.js"></script><title>Symphony – Registrations</title>
+<link type="text/css" rel="stylesheet" media="screen" href="../../../../extensions/field_textbox/assets/publish.css">
+<script type="text/javascript" src="../../../../extensions/field_textbox/assets/publish.js"></script>
+</head>
+<body><form action="../../../publish/registrations/new" method="POST" enctype="multipart/form-data">
+<h1><a href="../../../../">Symphony CMS</a></h1>
+<ul id="session">
+<li><a href="../../../system/users/edit/1/">Stephen Bau</a></li>
+<li><a href="../../../logout/">Logout</a></li>
+</ul>
+<ul id="nav">
+<li id="nav-training">Training<ul>
+<li><a href="../../../publish/categories/">Categories</a></li>
+<li><a href="../../../publish/courses/">Courses</a></li>
+<li><a href="../../../publish/types/">Types</a></li>
+</ul>
+</li>
+<li id="nav-employees" class="active">Employees<ul><li><a href="../../../publish/registrations/">Registrations</a></li></ul>
+</li>
+<li id="nav-system">System<ul>
+<li><a href="../../../system/users/">Users</a></li>
+<li><a href="../../../system/settings/">Settings</a></li>
+<li><a href="../../../system/extensions/">Extensions</a></li>
+<li><a href="../../../extension/aac/roles/">User Roles</a></li>
+</ul>
+</li>
+<li id="nav-blueprints">Blueprints<ul>
+<li><a href="../../../blueprints/views/">Views</a></li>
+<li><a href="../../../blueprints/sections/">Sections</a></li>
+<li><a href="../../../blueprints/datasources/">Data Sources</a></li>
+<li><a href="../../../blueprints/events/">Events</a></li>
+<li><a href="../../../blueprints/utilities/">Utilities</a></li>
+</ul>
+</li>
+</ul>
+<h2>New Entry</h2>
+<input name="MAX_FILE_SIZE" type="hidden" value="5242880"><div class="columns type-ls" id="layout">
+<div class="column large"><fieldset>
+<div class="field field-textbox small"><label>First Name<em>Optional</em><input name="fields[first-name]" type="text" class="size-single " length="0"></label></div>
+<div class="field field-textbox small"><label>Last Name<em>Optional</em><input name="fields[last-name]" type="text" class="size-single " length="0"></label></div>
+<div class="field field-textbox small"><label>Member Number<em>Optional</em><input name="fields[member-number]" type="text" class="size-single " length="0"></label></div>
+<div class="field field-date small"><label class="date">Birth Date<input name="fields[birth-date]" type="text"></label></div>
+</fieldset></div>
+<div class="column small"><fieldset>
+<div class="field field-select small"><label>Role<select name="fields[role]"><option value="Administrator">Administrator</option>
+<option value="Board Member">Board Member</option>
+<option value="Executive">Executive</option>
+<option value="Manager">Manager</option>
+<option value="President">President</option>
+<option value="Staff">Staff</option></select></label></div>
+<div class="field field-checkbox small"><label><input name="fields[active]" type="checkbox" value="yes">Active</label></div>
+</fieldset></div>
+</div>
+<div class="actions"><button accesskey="s" name="action[save]" type="submit"><span>Create Entry</span></button></div>
+</form></body>
+</html>

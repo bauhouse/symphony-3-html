@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Symphony Recoverable Error</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="../assets/css/peripheral.css" />
+  </head>
+  <body>
+    <h1>Symphony Recoverable Error</h1>
+    <div class="panel">
+      <h2>Argument 2 passed to DBCMySQLProfiler::query() must be an array, string given, called in /Users/stephen/Sites/sym3/beta/symphony/content/content.login.php on line 238 and defined</h2>
+      <p>An error occurred in <code>/Users/stephen/Sites/sym3/beta/symphony/lib/class.dbc.php</code> around line <code>510</code></p>
+      <ul>
+        <li>
+          <span>505</span>
+          <code>
+            <item number="505">&nbsp;&nbsp;&nbsp;&nbsp;}</item>
+          </code>
+        </li>
+        <li class="odd">
+          <span>506</span>
+          <code>
+            <item number="506">&nbsp;</item>
+          </code>
+        </li>
+        <li>
+          <span>507</span>
+          <code>
+            <item number="507">&nbsp;&nbsp;&nbsp;&nbsp;return number_format((float)$total, 4, '.', ',');</item>
+          </code>
+        </li>
+        <li class="odd">
+          <span>508</span>
+          <code>
+            <item number="508">}</item>
+          </code>
+        </li>
+        <li>
+          <span>509</span>
+          <code>
+            <item number="509">&nbsp;</item>
+          </code>
+        </li>
+        <li class="odd" id="error">
+          <span>510</span>
+          <code>
+            <item number="510">public function query($query, array $values=NULL, $returnType='DBCMySQLResult'){</item>
+          </code>
+        </li>
+        <li>
+          <span>511</span>
+          <code>
+            <item number="511">&nbsp;</item>
+          </code>
+        </li>
+        <li class="odd">
+          <span>512</span>
+          <code>
+            <item number="512">&nbsp;&nbsp;&nbsp;&nbsp;$start = self::__precisionTimer();</item>
+          </code>
+        </li>
+        <li>
+          <span>513</span>
+          <code>
+            <item number="513">&nbsp;&nbsp;&nbsp;&nbsp;$result = parent::query($query, $values, $returnType);</item>
+          </code>
+        </li>
+        <li class="odd">
+          <span>514</span>
+          <code>
+            <item number="514">&nbsp;&nbsp;&nbsp;&nbsp;$query = preg_replace(array('/[\r\n]/', '/\s{2,}/'), ' ', $query);</item>
+          </code>
+        </li>
+      </ul>
+    </div>
+    <h3>Backtrace</h3>
+    <div class="panel">
+      <ul>
+        <li>
+          <code>/Users/stephen/Sites/sym3/beta/symphony/lib/class.dbc.php:510<strong>GenericErrorHandler::handler();</strong></code>
+        </li>
+        <li class="odd">
+          <code>/Users/stephen/Sites/sym3/beta/symphony/content/content.login.php:238<strong>DBCMySQLProfiler-&gt;query();</strong></code>
+        </li>
+        <li>
+          <code>/Users/stephen/Sites/sym3/beta/symphony/content/content.login.php:38<strong>contentLogin-&gt;action();</strong></code>
+        </li>
+        <li class="odd">
+          <code>/Users/stephen/Sites/sym3/beta/symphony/lib/class.administration.php:248<strong>contentLogin-&gt;build();</strong></code>
+        </li>
+        <li>
+          <code>/Users/stephen/Sites/sym3/beta/index.php:37<strong>Administration-&gt;display();</strong></code>
+        </li>
+      </ul>
+    </div>
+    <h3>Database Query Log</h3>
+    <div class="panel">
+      <ul></ul>
+    </div>
+  </body>
+</html>

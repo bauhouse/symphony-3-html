@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" rel="stylesheet" media="screen" href="../../../../assets/css/symphony.css">
+<link type="text/css" rel="stylesheet" media="screen" href="../../../../assets/css/symphony.duplicator.css">
+<link type="text/css" rel="stylesheet" media="screen" href="../../../../assets/css/symphony.layout.css">
+<script type="text/javascript" src="../../../../assets/js/jquery.js"></script><script type="text/javascript" src="../../../../assets/js/jquery-ui.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.collapsible.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.orderable.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.duplicator.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.layout.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.tags.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.selectable.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.js"></script><title>Symphony – Views – Home</title>
+</head>
+<body><form action="../../../../blueprints/views/edit/home">
+<h1><a href="http://home/sym3/beta/">Symphony CMS</a></h1>
+<ul id="session">
+<li><a href="../../../../system/users/edit/1/">John Smith</a></li>
+<li><a href="../../../../logout/">Logout</a></li>
+</ul>
+<ul id="nav">
+<li id="nav-training">Training<ul>
+<li><a href="../../../../publish/categories/">Categories</a></li>
+<li><a href="../../../../publish/courses/">Courses</a></li>
+<li><a href="../../../../publish/types/">Types</a></li>
+</ul>
+</li>
+<li id="nav-employees">Employees<ul><li><a href="../../../../publish/registrations/">Registrations</a></li></ul>
+</li>
+<li id="nav-system">System<ul>
+<li><a href="../../../../system/users/">Users</a></li>
+<li><a href="../../../../system/settings/">Settings</a></li>
+<li><a href="../../../../system/extensions/">Extensions</a></li>
+<li><a href="../../../../extension/aac/roles/">User Roles</a></li>
+</ul>
+</li>
+<li id="nav-blueprints" class="active">Blueprints<ul>
+<li><a href="../../../../blueprints/views/">Views</a></li>
+<li><a href="../../../../blueprints/sections/">Sections</a></li>
+<li><a href="../../../../blueprints/datasources/">Data Sources</a></li>
+<li><a href="../../../../blueprints/events/">Events</a></li>
+<li><a href="../../../../blueprints/utilities/">Utilities</a></li>
+</ul>
+</li>
+</ul>
+<h2>Home</h2>
+<div id="tab"><ul>
+<li><a class="active" href="../../../../blueprints/views/edit/home">Configuration</a></li>
+<li><a class="" href="../../../../blueprints/views/template/home/">Template</a></li>
+</ul></div>
+<div class="columns type-lll" id="layout">
+<div class="column large"><fieldset>
+<h3>Essentials</h3>
+<label>Title<input name="fields[title]" type="text" value="Home"></label><div>
+<label>View Type<input name="fields[types]" type="text" value="index"></label><ul class="tags">
+<li>index</li>
+<li>XML</li>
+<li>admin</li>
+<li>404</li>
+<li>403</li>
+</ul>
+</div>
+</fieldset></div>
+<div class="column large"><fieldset>
+<h3>URL Settings</h3>
+<label>Parent<select name="fields[parent]"><option value="">/</option></select></label><label>Handle<input name="fields[handle]" type="text" value="home"></label><label>Parameters<input name="fields[url-parameters]" type="text"></label>
+</fieldset></div>
+<div class="column large"><fieldset>
+<h3>Resources</h3>
+<label>Events<select multiple name="fields[events][]" disabled></select></label><label>Data Sources<select multiple name="fields[data-sources][]" disabled></select></label>
+</fieldset></div>
+</div>
+<div class="actions">
+<button accesskey="s" name="action[save]" type="submit"><span>Save Changes</span></button><button class="confirm delete" title="Delete this view" name="action[delete]" type="submit"><span>Delete</span></button>
+</div>
+</form></body>
+</html>

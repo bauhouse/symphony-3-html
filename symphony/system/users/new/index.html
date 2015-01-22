@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" rel="stylesheet" media="screen" href="../../../assets/css/symphony.css">
+<link type="text/css" rel="stylesheet" media="screen" href="../../../assets/css/symphony.duplicator.css">
+<link type="text/css" rel="stylesheet" media="screen" href="../../../assets/css/symphony.layout.css">
+<script type="text/javascript" src="../../../assets/js/jquery.js"></script><script type="text/javascript" src="../../../assets/js/jquery-ui.js"></script><script type="text/javascript" src="../../../assets/js/symphony.collapsible.js"></script><script type="text/javascript" src="../../../assets/js/symphony.orderable.js"></script><script type="text/javascript" src="../../../assets/js/symphony.duplicator.js"></script><script type="text/javascript" src="../../../assets/js/symphony.layout.js"></script><script type="text/javascript" src="../../../assets/js/symphony.tags.js"></script><script type="text/javascript" src="../../../assets/js/symphony.selectable.js"></script><script type="text/javascript" src="../../../assets/js/symphony.js"></script><title>Symphony – Users – Untitled</title>
+</head>
+<body><form action="../../../system/users/new">
+<h1><a href="http://home/sym3/beta/">Symphony CMS</a></h1>
+<ul id="session">
+<li><a href="../../../system/users/edit/1/">John Smith</a></li>
+<li><a href="../../../logout/">Logout</a></li>
+</ul>
+<ul id="nav">
+<li id="nav-training">Training<ul>
+<li><a href="../../../publish/categories/">Categories</a></li>
+<li><a href="../../../publish/courses/">Courses</a></li>
+<li><a href="../../../publish/types/">Types</a></li>
+</ul>
+</li>
+<li id="nav-employees">Employees<ul><li><a href="../../../publish/registrations/">Registrations</a></li></ul>
+</li>
+<li id="nav-system" class="active">System<ul>
+<li><a href="../../../system/users/">Users</a></li>
+<li><a href="../../../system/settings/">Settings</a></li>
+<li><a href="../../../system/extensions/">Extensions</a></li>
+<li><a href="../../../extension/aac/roles/">User Roles</a></li>
+</ul>
+</li>
+<li id="nav-blueprints">Blueprints<ul>
+<li><a href="../../../blueprints/views/">Views</a></li>
+<li><a href="../../../blueprints/sections/">Sections</a></li>
+<li><a href="../../../blueprints/datasources/">Data Sources</a></li>
+<li><a href="../../../blueprints/events/">Events</a></li>
+<li><a href="../../../blueprints/utilities/">Utilities</a></li>
+</ul>
+</li>
+</ul>
+<h2>New User</h2>
+<div class="columns type-sls" id="layout">
+<div class="column small"><fieldset>
+<h3>Essentials</h3>
+<label>First Name<input name="fields[first_name]" type="text"></label><label>Last Name<input name="fields[last_name]" type="text"></label><label>Email Address<input name="fields[email]" type="text"></label><div class="group"><label>Role<select name="fields[role_id]"><option value="1">Author</option>
+<option value="2">Developer</option></select></label></div>
+</fieldset></div>
+<div class="column large"><fieldset>
+<h3>Login Details</h3>
+<label>Username<input name="fields[username]"></label><label>Password<input name="fields[password]" type="password"></label><label>Confirm Password<input name="fields[password-confirmation]" type="password"></label><label><input name="fields[auth_token_active]" type="checkbox" value="yes">Allow remote login via <a href="#d41d8cd9">/login/d41d8cd9/</a></label>
+</fieldset></div>
+<div class="column small"><fieldset>
+<h3>Custom Preferences</h3>
+<label>Default Section<select name="fields[default_section]"><option value="categories">Categories</option>
+<option value="courses">Courses</option>
+<option value="registrations">Registrations</option>
+<option value="types">Types</option></select></label><label>Language<select name="fields[language]"><option value="" selected>System Default</option>
+<option value="de">Deutsch</option>
+<option value="en">English</option>
+<option value="fr">French</option>
+<option value="it">Italiano</option>
+<option value="nl">Nederlands</option>
+<option value="pt-br">Portuguese (Brazil)</option>
+<option value="ru">Русский</option></select></label>
+</fieldset></div>
+</div>
+<div class="actions"><button accesskey="s" name="action[save]" type="submit"><span>Create User</span></button></div>
+</form></body>
+</html>

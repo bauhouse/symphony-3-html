@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" rel="stylesheet" media="screen" href="../../../../assets/css/symphony.css">
+<link type="text/css" rel="stylesheet" media="screen" href="../../../../assets/css/symphony.duplicator.css">
+<link type="text/css" rel="stylesheet" media="screen" href="../../../../assets/css/symphony.layout.css">
+<script type="text/javascript" src="../../../../assets/js/jquery.js"></script><script type="text/javascript" src="../../../../assets/js/jquery-ui.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.collapsible.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.orderable.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.duplicator.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.layout.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.tags.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.selectable.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.js"></script><title>Symphony – Utilities – html-manipulation.xsl</title>
+</head>
+<body><form action="../../../../blueprints/utilities/edit/html-manipulation/">
+<h1><a href="http://home/sym3/beta/">Symphony CMS</a></h1>
+<ul id="session">
+<li><a href="../../../../system/users/edit/1/">John Smith</a></li>
+<li><a href="../../../../logout/">Logout</a></li>
+</ul>
+<ul id="nav">
+<li id="nav-training">Training<ul>
+<li><a href="../../../../publish/categories/">Categories</a></li>
+<li><a href="../../../../publish/courses/">Courses</a></li>
+<li><a href="../../../../publish/types/">Types</a></li>
+</ul>
+</li>
+<li id="nav-employees">Employees<ul><li><a href="../../../../publish/registrations/">Registrations</a></li></ul>
+</li>
+<li id="nav-system">System<ul>
+<li><a href="../../../../system/users/">Users</a></li>
+<li><a href="../../../../system/settings/">Settings</a></li>
+<li><a href="../../../../system/extensions/">Extensions</a></li>
+<li><a href="../../../../extension/aac/roles/">User Roles</a></li>
+</ul>
+</li>
+<li id="nav-blueprints" class="active">Blueprints<ul>
+<li><a href="../../../../blueprints/views/">Views</a></li>
+<li><a href="../../../../blueprints/sections/">Sections</a></li>
+<li><a href="../../../../blueprints/datasources/">Data Sources</a></li>
+<li><a href="../../../../blueprints/events/">Events</a></li>
+<li><a href="../../../../blueprints/utilities/">Utilities</a></li>
+</ul>
+</li>
+</ul>
+<h2>html-manipulation.xsl</h2>
+<div class="columns type-ls" id="layout">
+<div class="column large"><fieldset>
+<h3>Essentials</h3>
+<label>Name<input name="fields[name]" type="text" value="html-manipulation.xsl"></label><label>XSLT<textarea rows="30" cols="80" class="code" name="fields[template]">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"&gt;
+
+&lt;!-- Default HTML Manipulation. Do not change these --&gt;
+&lt;xsl:template match="*" mode="html"&gt;
+	&lt;xsl:element name="{name()}"&gt;
+		&lt;xsl:apply-templates select="* | @* | text()" mode="html"/&gt;
+	&lt;/xsl:element&gt;
+&lt;/xsl:template&gt;
+&lt;xsl:template match="@*" mode="html"&gt;
+	&lt;xsl:attribute name="{name()}"&gt;
+		&lt;xsl:value-of select="."/&gt;
+	&lt;/xsl:attribute&gt;
+&lt;/xsl:template&gt;
+
+
+
+&lt;!-- Format Relative URLs --&gt;
+&lt;xsl:template match="@href | @src" mode="html"&gt;
+		&lt;xsl:attribute name="{name()}"&gt;
+				&lt;xsl:choose&gt;
+						&lt;xsl:when test="starts-with(.,'/')"&gt;&lt;xsl:value-of select="concat($root,.)" /&gt;&lt;/xsl:when&gt;
+						&lt;xsl:otherwise&gt;&lt;xsl:value-of select="." /&gt;&lt;/xsl:otherwise&gt;
+				&lt;/xsl:choose&gt;
+		&lt;/xsl:attribute&gt;
+&lt;/xsl:template&gt;
+
+
+
+&lt;!-- Easy YouTube Embed (http://symphony-cms.com/discuss/thread/44118/)--&gt;
+&lt;xsl:template match="p[starts-with(., 'http://www.youtube.com/watch?v=')]" mode="html"&gt;
+	&lt;p&gt;
+		&lt;xsl:element name="object"&gt;
+			&lt;xsl:attribute name="type"&gt;application/x-shockwave-flash&lt;/xsl:attribute&gt;
+			&lt;xsl:attribute name="width"&gt;560&lt;/xsl:attribute&gt;
+			&lt;xsl:attribute name="height"&gt;350&lt;/xsl:attribute&gt;
+			&lt;xsl:attribute name="class"&gt;youtube-embed&lt;/xsl:attribute&gt;
+			&lt;xsl:attribute name="data"&gt;
+					http://www.youtube.com/v/&lt;xsl:value-of 
+					select="normalize-space(substring-after(., 'http://www.youtube.com/watch?v='))"/&gt;
+			&lt;/xsl:attribute&gt;
+			&lt;xsl:element name="param"&gt;
+					&lt;xsl:attribute name="name"&gt;movie&lt;/xsl:attribute&gt;
+					&lt;xsl:attribute name="value"&gt;
+							http://www.youtube.com/v/&lt;xsl:value-of 
+							select="normalize-space(substring-after(., 'http://www.youtube.com/watch?v='))"/&gt;
+					&lt;/xsl:attribute&gt;
+			&lt;/xsl:element&gt;
+			&lt;xsl:element name="param"&gt;
+					&lt;xsl:attribute name="name"&gt;wmode&lt;/xsl:attribute&gt;
+					&lt;xsl:attribute name="value"&gt;transparent&lt;/xsl:attribute&gt;
+			&lt;/xsl:element&gt;
+		&lt;/xsl:element&gt;
+	&lt;/p&gt;
+&lt;/xsl:template&gt;
+
+&lt;/xsl:stylesheet&gt;</textarea></label>
+</fieldset></div>
+<div class="column small"><fieldset>
+<h3>Utilities</h3>
+<ul id="utilities">
+<li class="odd"><a href="../../../../blueprints/utilities/edit/date-time/">date-time.xsl</a></li>
+<li><a href="../../../../blueprints/utilities/edit/html-manipulation/">html-manipulation.xsl</a></li>
+<li class="odd"><a href="../../../../blueprints/utilities/edit/html-truncate-advanced/">html-truncate-advanced.xsl</a></li>
+<li><a href="../../../../blueprints/utilities/edit/html-truncate/">html-truncate.xsl</a></li>
+<li class="odd"><a href="../../../../blueprints/utilities/edit/html5/">html5.xsl</a></li>
+<li><a href="../../../../blueprints/utilities/edit/linkahashify/">linkahashify.xsl</a></li>
+<li class="odd"><a href="../../../../blueprints/utilities/edit/navigation/">navigation.xsl</a></li>
+<li><a href="../../../../blueprints/utilities/edit/page-title/">page-title.xsl</a></li>
+<li class="odd"><a href="../../../../blueprints/utilities/edit/pagination/">pagination.xsl</a></li>
+<li><a href="../../../../blueprints/utilities/edit/time-ago-friendly/">time-ago-friendly.xsl</a></li>
+<li class="odd"><a href="../../../../blueprints/utilities/edit/time-ago/">time-ago.xsl</a></li>
+<li><a href="../../../../blueprints/utilities/edit/twitter-format-date/">twitter-format-date.xsl</a></li>
+<li class="odd"><a href="../../../../blueprints/utilities/edit/twitter/">twitter.xsl</a></li>
+<li><a href="../../../../blueprints/utilities/edit/typography/">typography.xsl</a></li>
+</ul>
+</fieldset></div>
+</div>
+<div class="actions">
+<button accesskey="s" name="action[save]" type="submit"><span>Save Changes</span></button><button class="confirm delete" title="Delete this utility" name="action[delete]" type="submit"><span>Delete</span></button>
+</div>
+</form></body>
+</html>

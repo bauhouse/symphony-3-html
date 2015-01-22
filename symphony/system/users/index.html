@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" rel="stylesheet" media="screen" href="../../assets/css/symphony.css">
+<link type="text/css" rel="stylesheet" media="screen" href="../../assets/css/symphony.duplicator.css">
+<link type="text/css" rel="stylesheet" media="screen" href="../../assets/css/symphony.layout.css">
+<script type="text/javascript" src="../../assets/js/jquery.js"></script><script type="text/javascript" src="../../assets/js/jquery-ui.js"></script><script type="text/javascript" src="../../assets/js/symphony.collapsible.js"></script><script type="text/javascript" src="../../assets/js/symphony.orderable.js"></script><script type="text/javascript" src="../../assets/js/symphony.duplicator.js"></script><script type="text/javascript" src="../../assets/js/symphony.layout.js"></script><script type="text/javascript" src="../../assets/js/symphony.tags.js"></script><script type="text/javascript" src="../../assets/js/symphony.selectable.js"></script><script type="text/javascript" src="../../assets/js/symphony.js"></script><title>Symphony – Users</title>
+</head>
+<body><form action="../../system/users">
+<h1><a href="../../../">Symphony CMS</a></h1>
+<ul id="session">
+<li><a href="../../system/users/edit/1/">John Smith</a></li>
+<li><a href="../../logout/">Logout</a></li>
+</ul>
+<ul id="nav">
+<li id="nav-training">Training<ul>
+<li><a href="../../publish/categories/">Categories</a></li>
+<li><a href="../../publish/courses/">Courses</a></li>
+<li><a href="../../publish/types/">Types</a></li>
+</ul>
+</li>
+<li id="nav-employees">Employees<ul><li><a href="../../publish/registrations/">Registrations</a></li></ul>
+</li>
+<li id="nav-system" class="active">System<ul>
+<li><a href="../../system/users/">Users</a></li>
+<li><a href="../../system/settings/">Settings</a></li>
+<li><a href="../../system/extensions/">Extensions</a></li>
+<li><a href="../../extension/aac/roles/">User Roles</a></li>
+</ul>
+</li>
+<li id="nav-blueprints">Blueprints<ul>
+<li><a href="../../blueprints/views/">Views</a></li>
+<li><a href="../../blueprints/sections/">Sections</a></li>
+<li><a href="../../blueprints/datasources/">Data Sources</a></li>
+<li><a href="../../blueprints/events/">Events</a></li>
+<li><a href="../../blueprints/utilities/">Utilities</a></li>
+</ul>
+</li>
+</ul>
+<h2>Users<a title="Add a new User" class="create button" href="../../system/users/new/">Add a User</a>
+</h2>
+<table>
+<thead><tr>
+<th scope="col">Name</th>
+<th scope="col">Email Address</th>
+<th scope="col">Last Seen</th>
+<th scope="col">Role</th>
+</tr></thead>
+<tbody><tr>
+<td><a title="john" href="../../system/users/edit/1/">John Smith</a></td>
+<td><a title="Email this user" href="mailto:john@example.com">john@example.com</a></td>
+<td>02 December 2010 3:00 pm<input name="items[1]" type="checkbox">
+</td>
+<td><a href="../../extension/aac/roles/edit/2/">Developer</a></td>
+</tr></tbody>
+</table>
+<div class="actions">
+<select name="with-selected"><option value="">With Selected...</option>
+<option value="delete">Delete</option>
+<optgroup label="Set Role">
+<option value="aac-role::1"></option>
+<option value="aac-role::2"></option>
+</optgroup></select><input name="action[apply]" type="submit" value="Apply">
+</div>
+</form></body>
+</html>

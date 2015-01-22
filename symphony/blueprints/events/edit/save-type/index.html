@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" rel="stylesheet" media="screen" href="../../../../assets/css/symphony.css">
+<link type="text/css" rel="stylesheet" media="screen" href="../../../../assets/css/symphony.duplicator.css">
+<link type="text/css" rel="stylesheet" media="screen" href="../../../../assets/css/symphony.layout.css">
+<script type="text/javascript" src="../../../../assets/js/jquery.js"></script><script type="text/javascript" src="../../../../assets/js/jquery-ui.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.collapsible.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.orderable.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.duplicator.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.layout.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.tags.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.selectable.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.js"></script><title>Symphony – Events – Save Type</title>
+<script type="text/javascript" src="http://home/sym3/beta/extensions/ds_sections/assets/view.js"></script>
+</head>
+<body><form action="../../../../blueprints/events/edit/save-type">
+<h1><a href="http://home/sym3/beta/">Symphony CMS</a></h1>
+<ul id="session">
+<li><a href="../../../../system/users/edit/1/">John Smith</a></li>
+<li><a href="../../../../logout/">Logout</a></li>
+</ul>
+<ul id="nav">
+<li id="nav-training">Training<ul>
+<li><a href="../../../../publish/categories/">Categories</a></li>
+<li><a href="../../../../publish/courses/">Courses</a></li>
+<li><a href="../../../../publish/types/">Types</a></li>
+</ul>
+</li>
+<li id="nav-employees">Employees<ul><li><a href="../../../../publish/registrations/">Registrations</a></li></ul>
+</li>
+<li id="nav-system">System<ul>
+<li><a href="../../../../system/users/">Users</a></li>
+<li><a href="../../../../system/settings/">Settings</a></li>
+<li><a href="../../../../system/extensions/">Extensions</a></li>
+<li><a href="../../../../extension/aac/roles/">User Roles</a></li>
+</ul>
+</li>
+<li id="nav-blueprints" class="active">Blueprints<ul>
+<li><a href="../../../../blueprints/views/">Views</a></li>
+<li><a href="../../../../blueprints/sections/">Sections</a></li>
+<li><a href="../../../../blueprints/datasources/">Data Sources</a></li>
+<li><a href="../../../../blueprints/events/">Events</a></li>
+<li><a href="../../../../blueprints/utilities/">Utilities</a></li>
+</ul>
+</li>
+</ul>
+<h2>Save Type</h2>
+<input name="type" type="hidden" value="SectionsEvent"><div class="columns type-ssl" id="layout">
+<div class="column small"><fieldset>
+<h3>Essentials</h3>
+<label>Name<input name="fields[name]" type="text" value="Save Type"></label><label>Section<select id="context" name="fields[section]"><option value="categories">Categories</option>
+<option value="courses">Courses</option>
+<option value="registrations">Registrations</option>
+<option value="types" selected>Types</option></select></label>
+</fieldset></div>
+<div class="column small"><fieldset>
+<h3>Processing Options</h3>
+<label>Filter Rules<select multiple name="fields[filters][]"><option value="admin-only">Admin Only</option>
+<option value="send-email">Send Email</option>
+<option value="expect-multiple">Allow Multiple</option></select></label><label><input name="fields[output-id-on-save]" type="checkbox" value="yes">Add entry ID to the parameter pool in the format of $this-name-id when saving is successful.</label>
+</fieldset></div>
+<div class="column large"><fieldset>
+<h3>Overrides &amp; Defaults</h3>
+<p class="help">{$param}</p>
+<div class="duplicator-widget orderable-widget context context-categories">
+<ol class="controls"><li class="add">Add Item</li></ol>
+<ol class="templates">
+<li class="template">
+<span class="name">Override</span><label>Field<select name="fields[overrides][field][]"><option value="system:id">System ID</option>
+<option value="category">category</option>
+<option value="description">description</option>
+<option value="type">type</option></select></label><label>Replacement<input name="fields[overrides][replacement][]" type="text"></label>
+</li>
+<li class="template">
+<span class="name">Default Value</span><label>Field<select name="fields[defaults][field][]"><option value="system:id">System ID</option>
+<option value="category">category</option>
+<option value="description">description</option>
+<option value="type">type</option></select></label><label>Replacement<input name="fields[defaults][replacement][]" type="text"></label>
+</li>
+</ol>
+<div class="content">
+<ol class="tabs"></ol>
+<ol class="instances"></ol>
+</div>
+</div>
+<div class="duplicator-widget orderable-widget context context-courses">
+<ol class="controls"><li class="add">Add Item</li></ol>
+<ol class="templates">
+<li class="template">
+<span class="name">Override</span><label>Field<select name="fields[overrides][field][]"><option value="system:id">System ID</option>
+<option value="title">title</option>
+<option value="category">category</option>
+<option value="description">description</option>
+<option value="body">body</option>
+<option value="tags">tags</option>
+<option value="publish">publish</option></select></label><label>Replacement<input name="fields[overrides][replacement][]" type="text"></label>
+</li>
+<li class="template">
+<span class="name">Default Value</span><label>Field<select name="fields[defaults][field][]"><option value="system:id">System ID</option>
+<option value="title">title</option>
+<option value="category">category</option>
+<option value="description">description</option>
+<option value="body">body</option>
+<option value="tags">tags</option>
+<option value="publish">publish</option></select></label><label>Replacement<input name="fields[defaults][replacement][]" type="text"></label>
+</li>
+</ol>
+<div class="content">
+<ol class="tabs"></ol>
+<ol class="instances"></ol>
+</div>
+</div>
+<div class="duplicator-widget orderable-widget context context-registrations">
+<ol class="controls"><li class="add">Add Item</li></ol>
+<ol class="templates">
+<li class="template">
+<span class="name">Override</span><label>Field<select name="fields[overrides][field][]"><option value="system:id">System ID</option>
+<option value="first-name">first-name</option>
+<option value="last-name">last-name</option>
+<option value="member-number">member-number</option>
+<option value="birth-date">birth-date</option>
+<option value="role">role</option>
+<option value="active">active</option></select></label><label>Replacement<input name="fields[overrides][replacement][]" type="text"></label>
+</li>
+<li class="template">
+<span class="name">Default Value</span><label>Field<select name="fields[defaults][field][]"><option value="system:id">System ID</option>
+<option value="first-name">first-name</option>
+<option value="last-name">last-name</option>
+<option value="member-number">member-number</option>
+<option value="birth-date">birth-date</option>
+<option value="role">role</option>
+<option value="active">active</option></select></label><label>Replacement<input name="fields[defaults][replacement][]" type="text"></label>
+</li>
+</ol>
+<div class="content">
+<ol class="tabs"></ol>
+<ol class="instances"></ol>
+</div>
+</div>
+<div class="duplicator-widget orderable-widget context context-types">
+<ol class="controls"><li class="add">Add Item</li></ol>
+<ol class="templates">
+<li class="template">
+<span class="name">Override</span><label>Field<select name="fields[overrides][field][]"><option value="system:id">System ID</option>
+<option value="type">type</option>
+<option value="description">description</option></select></label><label>Replacement<input name="fields[overrides][replacement][]" type="text"></label>
+</li>
+<li class="template">
+<span class="name">Default Value</span><label>Field<select name="fields[defaults][field][]"><option value="system:id">System ID</option>
+<option value="type">type</option>
+<option value="description">description</option></select></label><label>Replacement<input name="fields[defaults][replacement][]" type="text"></label>
+</li>
+</ol>
+<div class="content">
+<ol class="tabs"></ol>
+<ol class="instances"></ol>
+</div>
+</div>
+</fieldset></div>
+</div>
+<div class="actions">
+<button accesskey="s" name="action[save]" type="submit"><span>Save Changes</span></button><button class="confirm delete" title="Delete this event" name="action[delete]" type="submit"><span>Delete</span></button>
+</div>
+</form></body>
+</html>

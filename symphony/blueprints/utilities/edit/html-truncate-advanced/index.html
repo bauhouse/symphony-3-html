@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" rel="stylesheet" media="screen" href="../../../../assets/css/symphony.css">
+<link type="text/css" rel="stylesheet" media="screen" href="../../../../assets/css/symphony.duplicator.css">
+<link type="text/css" rel="stylesheet" media="screen" href="../../../../assets/css/symphony.layout.css">
+<script type="text/javascript" src="../../../../assets/js/jquery.js"></script><script type="text/javascript" src="../../../../assets/js/jquery-ui.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.collapsible.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.orderable.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.duplicator.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.layout.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.tags.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.selectable.js"></script><script type="text/javascript" src="../../../../assets/js/symphony.js"></script><title>Symphony – Utilities – html-truncate-advanced.xsl</title>
+</head>
+<body><form action="../../../../blueprints/utilities/edit/html-truncate-advanced/">
+<h1><a href="http://home/sym3/beta/">Symphony CMS</a></h1>
+<ul id="session">
+<li><a href="../../../../system/users/edit/1/">John Smith</a></li>
+<li><a href="../../../../logout/">Logout</a></li>
+</ul>
+<ul id="nav">
+<li id="nav-training">Training<ul>
+<li><a href="../../../../publish/categories/">Categories</a></li>
+<li><a href="../../../../publish/courses/">Courses</a></li>
+<li><a href="../../../../publish/types/">Types</a></li>
+</ul>
+</li>
+<li id="nav-employees">Employees<ul><li><a href="../../../../publish/registrations/">Registrations</a></li></ul>
+</li>
+<li id="nav-system">System<ul>
+<li><a href="../../../../system/users/">Users</a></li>
+<li><a href="../../../../system/settings/">Settings</a></li>
+<li><a href="../../../../system/extensions/">Extensions</a></li>
+<li><a href="../../../../extension/aac/roles/">User Roles</a></li>
+</ul>
+</li>
+<li id="nav-blueprints" class="active">Blueprints<ul>
+<li><a href="../../../../blueprints/views/">Views</a></li>
+<li><a href="../../../../blueprints/sections/">Sections</a></li>
+<li><a href="../../../../blueprints/datasources/">Data Sources</a></li>
+<li><a href="../../../../blueprints/events/">Events</a></li>
+<li><a href="../../../../blueprints/utilities/">Utilities</a></li>
+</ul>
+</li>
+</ul>
+<h2>html-truncate-advanced.xsl</h2>
+<div class="columns type-ls" id="layout">
+<div class="column large"><fieldset>
+<h3>Essentials</h3>
+<label>Name<input name="fields[name]" type="text" value="html-truncate-advanced.xsl"></label><label>XSLT<textarea rows="30" cols="80" class="code" name="fields[template]">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:str="http://exslt.org/strings"&gt;
+&lt;!--
+	A tolerant truncation utility
+--&gt;
+	&lt;xsl:template name="truncate"&gt;
+		&lt;xsl:param name="node" /&gt;
+		&lt;xsl:param name="limit" /&gt;
+		
+		&lt;!--
+			Append this to the end of the value, if we have truncated it.
+		--&gt;
+		&lt;xsl:param name="suffix" select="'&amp;#x2026;'" /&gt;
+		
+		&lt;!--
+			Tolerance allows words that fall over the required length be
+			appended, as long as they don't go over $length + $tolerance.
+		--&gt;
+		&lt;xsl:param name="tolerance" select="3" /&gt;
+		
+		&lt;!--
+			Treat any of these characters as the end of a word.
+		--&gt;
+		&lt;xsl:param name="delimiters" select="str:tokenize(' -!?:)(;,.…&amp;#x2013;&amp;#x2014;&amp;#160;', '')" /&gt;
+		
+		&lt;!-- Find actual limit --&gt;
+		&lt;xsl:variable name="limit"&gt;
+			&lt;xsl:choose&gt;
+				&lt;xsl:when test="string-length($node) &amp;lt;= $limit"&gt;
+					&lt;xsl:value-of select="string-length($node)" /&gt;
+				&lt;/xsl:when&gt;
+				&lt;xsl:otherwise&gt;
+					&lt;xsl:variable name="preceding-delimiter"&gt;
+						&lt;xsl:call-template name="truncate-find-delimiter"&gt;
+							&lt;xsl:with-param name="value"&gt;
+								&lt;xsl:for-each select="str:tokenize(substring($node, 1, $limit + 1), '')"&gt;
+									&lt;xsl:sort select="position()" data-type="number" order="descending" /&gt;
+									
+									&lt;xsl:value-of select="." /&gt;
+								&lt;/xsl:for-each&gt;
+							&lt;/xsl:with-param&gt;
+							&lt;xsl:with-param name="delimiters" select="$delimiters" /&gt;
+						&lt;/xsl:call-template&gt;
+					&lt;/xsl:variable&gt;
+					
+					&lt;xsl:variable name="following-delimiter"&gt;
+						&lt;xsl:call-template name="truncate-find-delimiter"&gt;
+							&lt;xsl:with-param name="value" select="substring($node, $limit + 1)" /&gt;
+							&lt;xsl:with-param name="delimiters" select="$delimiters" /&gt;
+						&lt;/xsl:call-template&gt;
+					&lt;/xsl:variable&gt;
+					
+					&lt;xsl:choose&gt;
+						&lt;xsl:when test="$preceding-delimiter = 0 and $following-delimiter = 0"&gt;
+							&lt;xsl:value-of select="$limit" /&gt;
+						&lt;/xsl:when&gt;
+						&lt;xsl:when test="$following-delimiter &amp;lt;= $tolerance"&gt;
+							&lt;xsl:value-of select="$limit + $following-delimiter" /&gt;
+						&lt;/xsl:when&gt;
+						&lt;xsl:when test="$preceding-delimiter &amp;lt;= $tolerance"&gt;
+							&lt;xsl:value-of select="$limit - $preceding-delimiter" /&gt;
+						&lt;/xsl:when&gt;
+						&lt;xsl:otherwise&gt;
+							&lt;xsl:value-of select="$limit" /&gt;
+						&lt;/xsl:otherwise&gt;
+					&lt;/xsl:choose&gt;
+				&lt;/xsl:otherwise&gt;
+			&lt;/xsl:choose&gt;
+		&lt;/xsl:variable&gt;
+		
+		&lt;!-- Build output --&gt;
+		&lt;xsl:choose&gt;
+			&lt;xsl:when test="$limit != string-length($node)"&gt;
+				&lt;xsl:apply-templates select="($node/* | $node/text())[1]" mode="truncate-search"&gt;
+					&lt;xsl:with-param name="limit" select="$limit" /&gt;
+					&lt;xsl:with-param name="suffix" select="$suffix" /&gt;
+				&lt;/xsl:apply-templates&gt;
+			&lt;/xsl:when&gt;
+			&lt;xsl:otherwise&gt;
+				&lt;xsl:apply-templates select="$node/* | $node/text()" mode="truncate-render" /&gt;
+			&lt;/xsl:otherwise&gt;
+		&lt;/xsl:choose&gt;
+	&lt;/xsl:template&gt;
+	
+&lt;!--
+	Search for the node that runs over the limit.
+--&gt;
+	&lt;xsl:template match="* | text()" mode="truncate-search"&gt;
+		&lt;xsl:param name="length" select="0" /&gt;
+		&lt;xsl:param name="limit" select="0" /&gt;
+		&lt;xsl:param name="position" select="1" /&gt;
+		&lt;xsl:param name="suffix" /&gt;
+		
+		&lt;xsl:variable name="next" select="(../* | ../text())[$position + 1]" /&gt;
+		
+		&lt;xsl:choose&gt;
+			&lt;!-- Limit found --&gt;
+			&lt;xsl:when test="$length + string-length(.) &amp;gt;= $limit"&gt;
+				&lt;xsl:choose&gt;
+					&lt;!-- Keep searching children --&gt;
+					&lt;xsl:when test="*"&gt;
+						&lt;xsl:element name="{name()}"&gt;
+							&lt;xsl:apply-templates select="@*" mode="truncate-render" /&gt;
+							&lt;xsl:apply-templates select="(./* | ./text())[1]" mode="truncate-search"&gt;
+								&lt;xsl:with-param name="length" select="$length" /&gt;
+								&lt;xsl:with-param name="limit" select="$limit" /&gt;
+								&lt;xsl:with-param name="suffix" select="$suffix" /&gt;
+							&lt;/xsl:apply-templates&gt;
+						&lt;/xsl:element&gt;
+					&lt;/xsl:when&gt;
+					
+					&lt;!-- The node to truncate --&gt;
+					&lt;xsl:otherwise&gt;
+						&lt;xsl:apply-templates select="(../* | ../text())[position() &amp;lt; $position]" mode="truncate-render" /&gt;
+						&lt;xsl:apply-templates select="." mode="truncate-apply"&gt;
+							&lt;xsl:with-param name="limit" select="$limit - $length" /&gt;
+							&lt;xsl:with-param name="suffix" select="$suffix" /&gt;
+						&lt;/xsl:apply-templates&gt;
+					&lt;/xsl:otherwise&gt;
+				&lt;/xsl:choose&gt;
+			&lt;/xsl:when&gt;
+			
+			&lt;!-- Keep searching at this level --&gt;
+			&lt;xsl:when test="$next"&gt;
+				&lt;xsl:apply-templates select="$next" mode="truncate-search"&gt;
+					&lt;xsl:with-param name="length" select="$length + string-length(.)" /&gt;
+					&lt;xsl:with-param name="limit" select="$limit" /&gt;
+					&lt;xsl:with-param name="position" select="$position + 1" /&gt;
+					&lt;xsl:with-param name="suffix" select="$suffix" /&gt;
+				&lt;/xsl:apply-templates&gt;
+			&lt;/xsl:when&gt;
+			
+			&lt;!-- Nothing to truncate --&gt;
+			&lt;xsl:otherwise&gt;
+				&lt;xsl:apply-templates select="../* | ../text()" mode="truncate-render" /&gt;
+			&lt;/xsl:otherwise&gt;
+		&lt;/xsl:choose&gt;
+	&lt;/xsl:template&gt;
+	
+&lt;!--
+	Apply truncation to node
+--&gt;
+	&lt;xsl:template match="*" mode="truncate-apply"&gt;
+		&lt;xsl:param name="limit" /&gt;
+		&lt;xsl:param name="suffix" /&gt;
+		
+		&lt;xsl:element name="{name()}"&gt;
+			&lt;xsl:apply-templates select="@*" mode="truncate-render" /&gt;
+			&lt;xsl:value-of select="substring(., 1, $limit)" /&gt;
+			&lt;xsl:value-of select="$suffix" /&gt;
+		&lt;/xsl:element&gt;
+	&lt;/xsl:template&gt;
+	
+	&lt;xsl:template match="text()" mode="truncate-apply"&gt;
+		&lt;xsl:param name="limit" /&gt;
+		&lt;xsl:param name="suffix" /&gt;
+		
+		&lt;xsl:value-of select="substring(., 1, $limit)" /&gt;
+		&lt;xsl:value-of select="$suffix" /&gt;
+	&lt;/xsl:template&gt;
+	
+&lt;!--
+	Render all nodes
+--&gt;
+	&lt;xsl:template match="*" mode="truncate-render"&gt;
+		&lt;xsl:element name="{name()}"&gt;
+			&lt;xsl:apply-templates select="@*" mode="truncate-render" /&gt;
+			&lt;xsl:apply-templates select="* | text()" mode="truncate-render" /&gt;
+		&lt;/xsl:element&gt;
+	&lt;/xsl:template&gt;
+	
+	&lt;xsl:template match="@*" mode="truncate-render"&gt;
+		&lt;xsl:attribute name="{name()}"&gt;
+			&lt;xsl:value-of select="." /&gt;
+		&lt;/xsl:attribute&gt;
+	&lt;/xsl:template&gt;
+	
+	&lt;xsl:template match="text()" mode="truncate-render"&gt;
+		&lt;xsl:value-of select="." /&gt;
+	&lt;/xsl:template&gt;
+	
+&lt;!--
+	Search for a delimiter
+--&gt;
+	&lt;xsl:template name="truncate-find-delimiter"&gt;
+		&lt;xsl:param name="value" /&gt;
+		&lt;xsl:param name="delimiters" /&gt;
+		&lt;xsl:param name="length" select="0" /&gt;
+		
+		&lt;xsl:choose&gt;
+			&lt;xsl:when test="$value != ''"&gt;
+				&lt;xsl:choose&gt;
+					&lt;xsl:when test="$delimiters[starts-with(substring($value, 1, 1), .)]"&gt;
+						&lt;xsl:value-of select="$length" /&gt;
+					&lt;/xsl:when&gt;
+					&lt;xsl:otherwise&gt;
+						&lt;xsl:call-template name="truncate-find-delimiter"&gt;
+							&lt;xsl:with-param name="value" select="substring($value, 2)" /&gt;
+							&lt;xsl:with-param name="delimiters" select="$delimiters" /&gt;
+							&lt;xsl:with-param name="length" select="$length + 1" /&gt;
+						&lt;/xsl:call-template&gt;
+					&lt;/xsl:otherwise&gt;
+				&lt;/xsl:choose&gt;
+			&lt;/xsl:when&gt;
+			&lt;xsl:otherwise&gt;
+				&lt;xsl:value-of select="$length" /&gt;
+			&lt;/xsl:otherwise&gt;
+		&lt;/xsl:choose&gt;
+	&lt;/xsl:template&gt;
+&lt;/xsl:stylesheet&gt;</textarea></label>
+</fieldset></div>
+<div class="column small"><fieldset>
+<h3>Utilities</h3>
+<ul id="utilities">
+<li class="odd"><a href="../../../../blueprints/utilities/edit/date-time/">date-time.xsl</a></li>
+<li><a href="../../../../blueprints/utilities/edit/html-manipulation/">html-manipulation.xsl</a></li>
+<li class="odd"><a href="../../../../blueprints/utilities/edit/html-truncate-advanced/">html-truncate-advanced.xsl</a></li>
+<li><a href="../../../../blueprints/utilities/edit/html-truncate/">html-truncate.xsl</a></li>
+<li class="odd"><a href="../../../../blueprints/utilities/edit/html5/">html5.xsl</a></li>
+<li><a href="../../../../blueprints/utilities/edit/linkahashify/">linkahashify.xsl</a></li>
+<li class="odd"><a href="../../../../blueprints/utilities/edit/navigation/">navigation.xsl</a></li>
+<li><a href="../../../../blueprints/utilities/edit/page-title/">page-title.xsl</a></li>
+<li class="odd"><a href="../../../../blueprints/utilities/edit/pagination/">pagination.xsl</a></li>
+<li><a href="../../../../blueprints/utilities/edit/time-ago-friendly/">time-ago-friendly.xsl</a></li>
+<li class="odd"><a href="../../../../blueprints/utilities/edit/time-ago/">time-ago.xsl</a></li>
+<li><a href="../../../../blueprints/utilities/edit/twitter-format-date/">twitter-format-date.xsl</a></li>
+<li class="odd"><a href="../../../../blueprints/utilities/edit/twitter/">twitter.xsl</a></li>
+<li><a href="../../../../blueprints/utilities/edit/typography/">typography.xsl</a></li>
+</ul>
+</fieldset></div>
+</div>
+<div class="actions">
+<button accesskey="s" name="action[save]" type="submit"><span>Save Changes</span></button><button class="confirm delete" title="Delete this utility" name="action[delete]" type="submit"><span>Delete</span></button>
+</div>
+</form></body>
+</html>
