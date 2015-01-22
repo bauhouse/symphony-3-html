@@ -6,13 +6,13 @@
 
 ## Overview
 
-Symphony is a `PHP` & `MySQL` based CMS that utilises `XML` and `XSLT` as its core technologies. This repository represents version the `3 beta` that was released in June 2010, but never saw the light of day. For anyone who is interested in a little bit of history, feel free to look around at what could have been.
+Symphony is a `PHP` & `MySQL` based CMS that utilises `XML` and `XSLT` as its core technologies. This repository represents version the `3 beta` that was released in June 2010, but never saw the light of day as an official release. For anyone who is interested in a little bit of history, feel free to look around at what could have been.
 
 See the original announcement on the forum at <http://www.getsymphony.com/discuss/blog/entry/announcing-symphony-3-beta/>
 
 ### HTML Templates
 
-This repository is just plain old HTML files of the Symphony 3 default workspace and the admin user interface. So, the thought is to open up the idea of the Symphony UI and workflow to be extended to other systems, or to use the HTML templates as the basis for building web interfaces with technologies other than PHP. I'm interested in continuing my experiment to build the Symphony admin with XSLT.
+This repository is just plain old HTML files of the Symphony 3 admin user interface. So, the thought is to open up the idea of the Symphony UI and workflow to be extended to other systems, or to use the HTML templates as the basis for building web interfaces with technologies other than PHP. I'm interested in continuing my experiment to build the Symphony admin with XSLT.
 
 ### Symphony Demo
 
